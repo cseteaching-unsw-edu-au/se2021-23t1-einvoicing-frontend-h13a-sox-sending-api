@@ -1,27 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Registration.css";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export const SendInvoice = () => {
+export const SendInvoice = (props) => {
   const [receiver_email, setreceiver_email] = useState("");
   const [filename, setfilename] = useState("");
   const [xml_data, setxml_data] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [report, setReport] = useState(null);
+  const navigate = useNavigate();
 
-  const postData = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); /* Prevents page refresh on submit */
-    Axios.post("http://127.0.0.1:9090/send/send_invoice", {
-      receiver_email,
-      filename,
-      xml_data,
-    })
-      .then((res) => console.log("Sending E-invoice", res))
-      .catch((err) => console.log(err));
+    setIsSubmitting(true);
+    try {
+      // Post Request
+      const response = await Axios.post(
+        "http://127.0.0.1:9090/send/send_invoice",
+        {
+          receiver_email,
+          filename,
+          xml_data,
+        }
+      );
+      // Handle response {200}
+      console.log(response);
+      //setReport(response.data);
+      localStorage.setItem("report", JSON.stringify(response.data));
+      navigate("/Confirmation", { state: { report: "HelloWorld" } });
+    } catch (err) {
+      // Handle error
+      //console.error(err);
+      console.log(err);
+    }
+    setIsSubmitting(false);
   };
 
   return (
     <div className="sendInvoice">
       <h2>Send E-Invoice</h2>
-      <form className="send-Invoice-form" onSubmit={postData}>
+      <form className="send-Invoice-form" onSubmit={handleSubmit}>
         {/* recipient Email */}
         <label htmlFor="email">Recipients Email</label>
         <input

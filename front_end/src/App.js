@@ -4,6 +4,7 @@ import { Home } from "./components/Home";
 import { Registration } from "./components/Registration";
 import { Navbar } from "./components/Navbar";
 import { SendInvoice } from "./components/SendInvoice";
+import { Confirmation } from "./components/Confirmation";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="Registration" element={<Registration />}></Route>
         <Route path="SendInvoice" element={<SendInvoice />}></Route>
+        <Route path="Confirmation" element={<Confirmation />}></Route>
       </Routes>
     </>
   );
