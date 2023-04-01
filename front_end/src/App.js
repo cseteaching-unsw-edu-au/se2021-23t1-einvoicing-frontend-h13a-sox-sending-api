@@ -5,6 +5,7 @@ import { Registration } from "./components/Registration";
 import { Navbar } from "./components/Navbar";
 import { SendInvoice } from "./components/SendInvoice";
 import { Confirmation } from "./components/Confirmation";
+import { RenderInvoice } from "./components/RenderInvoice";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="Registration" element={<Registration />}></Route>
         <Route path="SendInvoice" element={<SendInvoice />}></Route>
         <Route path="Confirmation" element={<Confirmation />}></Route>
+        <Route path="RenderInvoice" element={<RenderInvoice />}></Route>
       </Routes>
     </>
   );

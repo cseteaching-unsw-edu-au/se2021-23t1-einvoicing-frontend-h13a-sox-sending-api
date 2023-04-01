@@ -11,7 +11,7 @@ export const Registration = () => {
   };
 
   return (
-    <div className="Registration">
+    <div className="authentication-page">
       {currentForm === "login" ? (
         <Login onFormSwitch={toggleForm} />
       ) : (

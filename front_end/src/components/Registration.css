@@ -1,6 +1,7 @@
-.Registration,
+.authentication-page,
 .home-page,
-.sendInvoice {
+.send-page,
+.render-page {
   text-align: center;
   display: flex;
   min-height: 100vh;
@@ -14,13 +15,15 @@
 .login-form,
 .registor-form,
 .send-Invoice-form,
-.sendInvoice {
+.send-page,
+.render-page {
   display: flex;
   flex-direction: column;
 }
 
 .auth-form-container,
-.sendInvoice {
+.send-page,
+.render-page {
   padding: 5rem;
   border: 1px solid white;
   border-radius: 10px;

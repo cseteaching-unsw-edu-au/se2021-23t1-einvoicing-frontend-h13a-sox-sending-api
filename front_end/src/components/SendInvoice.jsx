@@ -38,7 +38,7 @@ export const SendInvoice = (props) => {
   };
 
   return (
-    <div className="sendInvoice">
+    <div className="send-page">
       <h2>Send E-Invoice</h2>
       <form className="send-Invoice-form" onSubmit={handleSubmit}>
         {/* recipient Email */}
