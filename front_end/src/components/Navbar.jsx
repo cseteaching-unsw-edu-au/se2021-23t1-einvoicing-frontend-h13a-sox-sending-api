@@ -7,6 +7,8 @@ export const Navbar = () => {
       <NavLink to="/registration">Registration</NavLink>
       <NavLink to="/SendInvoice">Send Invoice</NavLink>
       <NavLink to="/RenderInvoice">Render E-Invoice</NavLink>
+      <NavLink to="/CreateInvoice">Create E-Invoice</NavLink>
+      <NavLink to="/StoreInvoice">Store E-Invoice</NavLink>
     </nav>
   );
 };
