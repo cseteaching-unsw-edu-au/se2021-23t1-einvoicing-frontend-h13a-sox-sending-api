@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Single.css";
 import Axios from "axios";
-import axios from "axios";
 
 export const RenderInvoice = () => {
   const url =
