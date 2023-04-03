@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import "./Single.css";
 
 export const Confirmation = (props) => {
   const report = JSON.parse(
@@ -6,7 +7,7 @@ export const Confirmation = (props) => {
   ).communication_report;
 
   return (
-    <div>
+    <div className="single-page">
       <h1>Confirmation Page</h1>
       <p>Date: {report.date}</p>
       <p>Description: {report.description}</p>
