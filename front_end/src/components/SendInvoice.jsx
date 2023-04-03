@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export const SendInvoice = (props) => {
   const [receiver_email, setreceiver_email] = useState("");
-  const [filename, setfilename] = useState("");
+  const [file_name, setfilename] = useState("");
   const [xml_data, setxml_data] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [report, setReport] = useState(null);
@@ -17,10 +17,10 @@ export const SendInvoice = (props) => {
     try {
       // Post Request
       const response = await Axios.post(
-        "http://127.0.0.1:9090/send/send_invoice",
+        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/send/send_invoice",
         {
           receiver_email,
-          filename,
+          file_name,
           xml_data,
         }
       );
@@ -55,7 +55,7 @@ export const SendInvoice = (props) => {
         {/* filename */}
         <label htmlFor="file_name">filename</label>
         <input
-          value={filename}
+          value={file_name}
           onChange={(e) => setfilename(e.target.value)}
           type="text"
           placeholder="example2.xml"
