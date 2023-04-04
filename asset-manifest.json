@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/se2021-23t1-einvoicing-frontend-h13a-sox-sending-api/static/css/main.9d07a16b.css",
+    "main.js": "/se2021-23t1-einvoicing-frontend-h13a-sox-sending-api/static/js/main.8112b879.js",
+    "static/js/787.22edae46.chunk.js": "/se2021-23t1-einvoicing-frontend-h13a-sox-sending-api/static/js/787.22edae46.chunk.js",
+    "index.html": "/se2021-23t1-einvoicing-frontend-h13a-sox-sending-api/index.html",
+    "main.9d07a16b.css.map": "/se2021-23t1-einvoicing-frontend-h13a-sox-sending-api/static/css/main.9d07a16b.css.map",
+    "main.8112b879.js.map": "/se2021-23t1-einvoicing-frontend-h13a-sox-sending-api/static/js/main.8112b879.js.map",
+    "787.22edae46.chunk.js.map": "/se2021-23t1-einvoicing-frontend-h13a-sox-sending-api/static/js/787.22edae46.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9d07a16b.css",
+    "static/js/main.8112b879.js"
+  ]
+}
