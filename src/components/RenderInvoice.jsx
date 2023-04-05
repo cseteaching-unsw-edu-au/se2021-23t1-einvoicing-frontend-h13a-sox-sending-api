@@ -6,18 +6,25 @@ export const RenderInvoice = () => {
   const [inputFile, setinputFile] = useState("");
   const [lang, setLang] = useState("");
   const [option, setOption] = useState("");
+  const [api, setAPI] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault(); /* Prevents page refresh on submit */
 
     try {
-      const formData = new FormData();
-      formData.append("inputFile", inputFile);
-      formData.append("lang", "English");
-      formData.append("option", "Simple");
+      const data = {
+        inputFile: inputFile,
+        lang: "English",
+        option: option,
+      };
+      const urlEncodedData = new URLSearchParams();
+      for (const key in data) {
+        urlEncodedData.append(key, data[key]);
+      }
 
       const options = {
         headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
           Authorization:
             "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg3YzFlN2Y4MDAzNGJiYzgxYjhmMmRiODM3OTIxZjRiZDI4N2YxZGYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZWludm9pY2UtcmVuZGVyaW5nLWFwaSIsImF1ZCI6ImVpbnZvaWNlLXJlbmRlcmluZy1hcGkiLCJhdXRoX3RpbWUiOjE2ODA2OTE0NDksInVzZXJfaWQiOiJ0WEJWdW1jYkhjVFpsMmppamJjYXAyd2lMeFoyIiwic3ViIjoidFhCVnVtY2JIY1RabDJqaWpiY2FwMndpTHhaMiIsImlhdCI6MTY4MDY5MTQ0OSwiZXhwIjoxNjgwNjk1MDQ5LCJlbWFpbCI6InNpeHJpcDdlckBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsic2l4cmlwN2VyQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.SHgJpe1iVsFnyf-O9Ty5VC6HXN1Jau2XLfWnFEHssJcaCX6AEUZ2dAR8uBhJRS_q-UWUm4ul9C2Tyg1EkvpHDDgDGk7Xt0It76S-EpSWlc7zcsyYWQyxvVTbDU3-tOZg712lXDXmw8H8LtPblft14_owoVP9s1JDrdiEhChyjO0MDCkA9WTzyekN8bn1TKUp65IxMjr_52Mx4ZHc094w42SYyfFc6rd8Z3t6ZS-SiUu_YnaY1FImDNePmMuRTn8JLhwGCqpkjyn884ntj9FNBQMpkawawHQfMK2b29RBjyXnqqCLrm2XIUTxrxUl7cfySUIcHcdO4ZWPhf0SSdJGGg",
         },
@@ -25,7 +32,7 @@ export const RenderInvoice = () => {
 
       const response = await Axios.post(
         "https://einvoice-rendering-api.web.app/render/pdf/v2/",
-        formData,
+        urlEncodedData.toString(),
         options
       );
       console.log(response.data);
