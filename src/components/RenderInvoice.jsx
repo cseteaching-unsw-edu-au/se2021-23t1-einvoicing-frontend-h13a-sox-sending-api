@@ -1,42 +1,76 @@
 import React, { useState } from "react";
 import "./Single.css";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const RenderInvoice = () => {
-  const url =
-    "https://einvoice-rendering-api.web.app/api-docs/#/API%20Routes/post_render_pdf_v2_";
   const [inputFile, setinputFile] = useState("");
   const [lang, setLang] = useState("");
   const [option, setOption] = useState("");
-  const [token, setToken] = useState("");
+  const [api, setAPI] = useState("");
+  const navigate = useNavigate();
+
+  const retrieveAPI = async () => {
+    try {
+      // Post Request
+      const response = await Axios.post(
+        "https://einvoice-rendering-api.web.app/auth/login/",
+        {
+          email: "sixrip7er@gmail.com",
+          password: "Bakhtiari2023",
+        }
+      );
+      // Handle response {200}
+      //console.log(response);
+      //setReport(response.data);
+      localStorage.setItem("token", JSON.stringify(response.data));
+      //navigate("/Confirmation", { state: { report: "HelloWorld" } });
+      //setAPI(response.data);
+    } catch (err) {
+      // Handle error
+      //console.error(err);
+      console.log(err);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault(); /* Prevents page refresh on submit */
 
-    const formData = new FormData();
-    formData.append("email", "sixrip7er@gmail.com");
-    formData.append("password", "1234567");
-    console.log(formData);
+    //console.log(api);
+    retrieveAPI();
+    //console.log(api);
 
-    // Get Token
+    const apiKey = JSON.parse(localStorage.getItem("token")).token;
+
+    //console.log(apiKey);
+
     try {
-      // Post Request
+      const data = {
+        inputFile: inputFile,
+        lang: "English",
+        option: option,
+      };
+      const urlEncodedData = new URLSearchParams();
+      for (const key in data) {
+        urlEncodedData.append(key, data[key]);
+      }
+
+      const options = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: apiKey,
+        },
+      };
 
       const response = await Axios.post(
         "https://einvoice-rendering-api.web.app/render/pdf/v2/",
-        "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk3OWVkMTU1OTdhYjM1Zjc4MjljZTc0NDMwN2I3OTNiN2ViZWIyZjAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZWludm9pY2UtcmVuZGVyaW5nLWFwaSIsImF1ZCI6ImVpbnZvaWNlLXJlbmRlcmluZy1hcGkiLCJhdXRoX3RpbWUiOjE2ODAzNjY5NTUsInVzZXJfaWQiOiJ0WEJWdW1jYkhjVFpsMmppamJjYXAyd2lMeFoyIiwic3ViIjoidFhCVnVtY2JIY1RabDJqaWpiY2FwMndpTHhaMiIsImlhdCI6MTY4MDM2Njk1NSwiZXhwIjoxNjgwMzcwNTU1LCJlbWFpbCI6InNpeHJpcDdlckBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsic2l4cmlwN2VyQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.OBXMb-q5bEatmlgqfGxeVplqDq2at__qlhpvLgwYf-9gUv7oJBSpPRwGKzprJap00p0vsaSVA5jHVmw4QlQdWY5iaLK-hAKBrw5smYnMv1Bn8Be0wVP5C27K716CWIoBVNCISTZPCBKpfJKjFfA31j85beLKnptZPwYpkzToe0zw1KtQQBtktmg6YOEwdp7rtVEFga4wpICi9fIGRqmJRhoBrMQFKZGBLsmATP7RS7SfuOBfzRECUE-87lAxOapZXgNcZBB3SojrBbz2UvvRN0-zosg4l81TakdyN3fxiZqDUQvETCqkmcQ3DwWwnlkP6n0ren9rUr-RXD8ucmSz3Q",
-        new URLSearchParams({
-          inputFile: inputFile,
-          lang: lang,
-          option: option,
-        })
+        urlEncodedData.toString(),
+        options
       );
-      // Handle response {200}
-      setToken(response.data.token);
-      console.log(token);
-    } catch (err) {
-      // Handle error
-      console.log(err);
+      console.log(response.data.url);
+      const newWindow = window.open(response.data.url);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -57,25 +91,27 @@ export const RenderInvoice = () => {
 
         {/* Lang */}
         <label htmlFor="lang">Language</label>
-        <input
+        <select
           value={lang}
           onChange={(e) => setLang(e.target.value)}
-          type="text"
-          placeholder="English"
           id="lang"
           name="lang"
-        ></input>
+        >
+          <option value="English">English</option>
+          <option value="Arabic">Arabic</option>
+        </select>
 
         {/* Option */}
         <label htmlFor="option">Option</label>
-        <input
+        <select
           value={option}
           onChange={(e) => setOption(e.target.value)}
-          type="text"
-          placeholder="Simple or Modern"
           id="option"
           name="option"
-        ></input>
+        >
+          <option value="Simple">Simple</option>
+          <option value="Modern">Modern</option>
+        </select>
 
         {/* Submit */}
         <button type="submit">Render E-Invoice</button>
