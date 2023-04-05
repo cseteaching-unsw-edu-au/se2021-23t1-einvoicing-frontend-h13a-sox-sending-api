@@ -7,34 +7,54 @@ export const SendInvoice = (props) => {
   const [receiver_email, setreceiver_email] = useState("");
   const [file_name, setfilename] = useState("");
   const [xml_data, setxml_data] = useState("");
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [report, setReport] = useState(null);
   const navigate = useNavigate();
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault(); /* Prevents page refresh on submit */
+  //   setIsSubmitting(true);
+  //   try {
+  //     // Post Request
+  //     const response = await Axios.post(
+  //       "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/send/send_invoice",
+  //       {
+  //         receiver_email,
+  //         file_name,
+  //         xml_data,
+  //       }
+  //     );
+  //     // Handle response {200}
+  //     console.log(response);
+  //     //setReport(response.data);
+  //     localStorage.setItem("report", JSON.stringify(response.data));
+  //     navigate("/Confirmation", { state: { report: "HelloWorld" } });
+  //   } catch (err) {
+  //     // Handle error
+  //     //console.error(err);
+  //     console.log(err);
+  //   }
+  //   setIsSubmitting(false);
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault(); /* Prevents page refresh on submit */
     setIsSubmitting(true);
+
     try {
-      // Post Request
+      const formData = new FormData();
+      formData.append("receiver_email", receiver_email);
+      formData.append("file_name", file_name);
+      formData.append("xml_data", xml_data);
       const response = await Axios.post(
-        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/send/send_invoice",
-        {
-          receiver_email,
-          file_name,
-          xml_data,
-        }
+        "http://127.0.0.1:9090/send/send_invoice",
+        formData
       );
-      // Handle response {200}
-      console.log(response);
-      //setReport(response.data);
-      localStorage.setItem("report", JSON.stringify(response.data));
-      navigate("/Confirmation", { state: { report: "HelloWorld" } });
-    } catch (err) {
-      // Handle error
-      //console.error(err);
-      console.log(err);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
     }
-    setIsSubmitting(false);
   };
 
   return (
