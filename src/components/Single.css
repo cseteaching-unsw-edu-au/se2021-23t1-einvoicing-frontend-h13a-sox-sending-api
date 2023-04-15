@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  background-image: linear-gradient(79deg, #caca3a, #833737 48%, #497295);
+  background-color: #4680B0;
 }
 
 .single-form,
@@ -39,7 +39,7 @@ button {
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
-  color: #833737;
+  color: #4680B0;
 }
 
 .link-btn {

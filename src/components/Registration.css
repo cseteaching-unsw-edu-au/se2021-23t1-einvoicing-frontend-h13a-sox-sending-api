@@ -7,12 +7,12 @@
   align-items: center;
   justify-content: center;
   color: white;
-  background-image: linear-gradient(79deg, #caca3a, #833737 48%, #497295);
+  background-color: #4680B0;
 }
 
 .auth-form-container,
 .login-form,
-.registor-form,
+.register-form,
 .send-Invoice-form,
 .send-page {
   display: flex;
@@ -22,7 +22,7 @@
 .auth-form-container,
 .send-page {
   padding: 5rem;
-  border: 1px solid white;
+  border: 4px solid white;
   border-radius: 10px;
   margin: 0.5rem;
 }
@@ -45,7 +45,7 @@ button {
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
-  color: #833737;
+  color: #4680B0;
 }
 
 .link-btn {

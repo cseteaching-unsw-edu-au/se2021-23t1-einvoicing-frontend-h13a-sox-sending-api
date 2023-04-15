@@ -13,10 +13,10 @@ export const Login = (props) => {
 
   return (
     <div className="auth-form-container">
-      <h2>Login</h2>
+      <h2 className="title">Login</h2>
       <form className="login-form" onSubmit={handleSubmit}>
         {/* Email */}
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email" className="subtitle">Email</label>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -27,7 +27,7 @@ export const Login = (props) => {
         ></input>
 
         {/* Password */}
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className="subtitle">Password</label>
         <input
           value={pass}
           onChange={(e) => setPass(e.target.value)}
@@ -46,9 +46,9 @@ export const Login = (props) => {
       {/* New User*/}
       <button
         className="link-btn"
-        onClick={() => props.onFormSwitch("registor")}
+        onClick={() => props.onFormSwitch("register")}
       >
-        Dont have an account? Registor here.
+        Dont have an account? Register here.
       </button>
     </div>
   );
