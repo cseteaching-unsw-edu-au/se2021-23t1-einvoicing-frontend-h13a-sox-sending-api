@@ -1,5 +1,4 @@
 .authentication-page,
-.home-page,
 .send-page {
   text-align: center;
   display: flex;
@@ -12,8 +11,6 @@
 
 .auth-form-container,
 .login-form,
-.register-form,
-.send-Invoice-form,
 .send-page {
   display: flex;
   flex-direction: column;
