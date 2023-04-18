@@ -8,10 +8,6 @@ export const SignButton = () => {
 
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
 
-  const displayName = (e) => {
-    console.log("Hello" + userDetails.first_name);
-  };
-
   function logOut() {
     userDetails === null
       ? navigate("/Registration")

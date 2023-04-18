@@ -15,11 +15,10 @@ import { SignButton } from "./components/SignButton";
 function App() {
   return (
     <>
-      <SignButton />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Registration />}></Route>
-        <Route path="Home" element={<Home />}></Route>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="Registration" element={<Registration />}></Route>
         <Route path="SendInvoice" element={<SendInvoice />}></Route>
         <Route path="Confirmation" element={<Confirmation />}></Route>
         <Route path="RenderInvoice" element={<RenderInvoice />}></Route>
