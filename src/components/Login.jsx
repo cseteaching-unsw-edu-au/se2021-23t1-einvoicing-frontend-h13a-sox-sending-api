@@ -38,7 +38,7 @@ export const Login = (props) => {
         ></input>
 
         {/* Submit */}
-        <button type="submit" onClick={() => navigate("/")}>
+        <button type="submit" onClick={() => navigate("Home")}>
           Log In
         </button>
       </form>

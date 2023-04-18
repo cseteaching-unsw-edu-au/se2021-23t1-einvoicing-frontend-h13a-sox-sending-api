@@ -1,24 +1,18 @@
 .single-page {
   text-align: center;
   display: flex;
-  min-height: 100vh;
   align-items: center;
   justify-content: center;
   color: white;
   background-color: #4680B0;
+  height: 788px;
+  width: 1440px;
 }
 
 .single-form,
 .single-page {
   display: flex;
   flex-direction: column;
-}
-
-.single-page {
-  padding: 5rem;
-  border: 1px solid white;
-  border-radius: 10px;
-  margin: 0.5rem;
 }
 
 label {

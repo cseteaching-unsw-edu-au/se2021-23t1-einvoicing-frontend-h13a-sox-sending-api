@@ -59,7 +59,7 @@ export const Register = (props) => {
           id="password"
         ></input>
         {/* submit */}
-        <button type="submit" onClick={() => navigate("/")} className="subtitle">
+        <button type="submit" onClick={() => navigate("Home")} className="subtitle">
           Register
         </button>
       </form>
