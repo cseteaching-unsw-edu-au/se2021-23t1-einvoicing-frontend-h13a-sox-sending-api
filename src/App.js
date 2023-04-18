@@ -10,7 +10,7 @@ import { CreateInvoice } from "./components/CreateInvoice";
 import { StoreInvoice } from "./components/StoreInvoice";
 import { Inbox } from "./components/Inbox";
 import { Login } from "./components/Login";
-import { SignButton } from "./components/SignButton";
+import { InvoiceStorage } from "./components/InvoiceStorage";
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
         <Route path="RenderInvoice" element={<RenderInvoice />}></Route>
         <Route path="CreateInvoice" element={<CreateInvoice />}></Route>
         <Route path="StoreInvoice" element={<StoreInvoice />}></Route>
+        <Route path="InvoiceStorage" element={<InvoiceStorage />}></Route>
         <Route path="Inbox" element={<Inbox />}></Route>
         <Route path="Login" element={<Login />}></Route>
       </Routes>

@@ -7,13 +7,6 @@ import CircleLoader from "react-spinners/CircleLoader";
 export const RenderInvoice = () => {
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(false);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1);
-  }, []);
-
   const [inputFile, setinputFile] = useState("");
   const [option, setOption] = useState("");
   const navigate = useNavigate();
@@ -39,9 +32,12 @@ export const RenderInvoice = () => {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault(); /* Prevents page refresh on submit */
 
     retrieveAPI();
+
+    await delay(3000);
 
     const apiKey = JSON.parse(localStorage.getItem("token")).token;
 
@@ -69,11 +65,19 @@ export const RenderInvoice = () => {
         options
       );
       console.log(response.data.url);
-      setLoading(true);
+      // setLoading(true);
       await delay(15000);
       const newWindow = window.open(response.data.url);
     } catch (error) {
       console.error(error);
+      if (error.response.status == 422) {
+        console.log(error);
+        alert(
+          "Invoice could not be rendered. Please enter XML String from validated e-invoice!"
+        );
+      } else {
+        console.log(error);
+      }
     }
     setLoading(false);
   };

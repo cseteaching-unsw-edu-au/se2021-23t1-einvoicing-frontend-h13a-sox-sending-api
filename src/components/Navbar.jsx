@@ -117,6 +117,22 @@ export const Navbar = (props) => {
               />
             )}
           </NavLink>
+
+          <NavLink to="/InvoiceStorage">
+            {location.pathname === "/InvoiceStorage" ? (
+              <img
+                src={blue_inbox}
+                alt="Inbox"
+                style={{ position: "absolute", left: "700px", top: "10px" }}
+              />
+            ) : (
+              <img
+                src={white_inbox}
+                alt="Inbox"
+                style={{ position: "absolute", left: "700px", top: "10px" }}
+              />
+            )}
+          </NavLink>
         </div>
         {/* Logout Button */}
 

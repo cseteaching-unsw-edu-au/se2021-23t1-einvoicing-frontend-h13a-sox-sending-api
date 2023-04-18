@@ -11,17 +11,18 @@ export const SendInvoice = (props) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setLoading(false);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setLoading(false);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 3000);
+  // }, []);
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const handleSubmit = async (e) => {
     e.preventDefault(); /* Prevents page refresh on submit */
+    setLoading(true);
     try {
       // Post Request
       const response = await Axios.post(
@@ -36,8 +37,8 @@ export const SendInvoice = (props) => {
       console.log(response);
       //setReport(response.data);
       localStorage.setItem("report", JSON.stringify(response.data));
-      setLoading(true);
-      await delay(3000);
+      //setLoading(true);
+      //await delay(3000);
       navigate("/Confirmation", { state: { report: "HelloWorld" } });
     } catch (err) {
       // Handle error
