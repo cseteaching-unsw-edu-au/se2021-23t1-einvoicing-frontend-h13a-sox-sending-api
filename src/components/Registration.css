@@ -28,6 +28,8 @@ input {
   margin: 0.5rem 0;
   padding: 1rem;
   border: none;
+  height: 30px;
+  width: 350px;
   border-radius: 10px;
 }
 
