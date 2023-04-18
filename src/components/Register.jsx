@@ -58,7 +58,9 @@ export const Register = (props) => {
       <h2 className="title">Register</h2>
       <form className="register-form" onSubmit={handleSubmit}>
         {/* first name */}
-        <label htmlFor="first_name" className="subtitle">First Name</label>
+        <label htmlFor="first_name" className="subtitle">
+          First Name
+        </label>
         <input
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
@@ -68,7 +70,9 @@ export const Register = (props) => {
           id="first_name"
         ></input>
         {/* last name */}
-        <label htmlFor="last_name" className="subtitle">Last Name</label>
+        <label htmlFor="last_name" className="subtitle">
+          Last Name
+        </label>
         <input
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
@@ -78,7 +82,9 @@ export const Register = (props) => {
           id="last_name"
         ></input>
         {/* email */}
-        <label htmlFor="email" className="subtitle">Email</label>
+        <label htmlFor="email" className="subtitle">
+          Email
+        </label>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -88,7 +94,9 @@ export const Register = (props) => {
           id="email"
         ></input>
         {/* password */}
-        <label htmlFor="password" className="subtitle">Password</label>
+        <label htmlFor="password" className="subtitle">
+          Password
+        </label>
         <input
           value={pass}
           onChange={(e) => setPass(e.target.value)}
@@ -98,7 +106,7 @@ export const Register = (props) => {
           id="password"
         ></input>
         {/* submit */}
-        <button type="submit" onClick={() => navigate("Home")} className="subtitle">
+        <button type="submit" className="subtitle">
           Register
         </button>
       </form>

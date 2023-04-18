@@ -41,7 +41,9 @@ export const Login = (props) => {
       <h2 className="title">Login</h2>
       <form className="login-form" onSubmit={handleSubmit}>
         {/* Email */}
-        <label htmlFor="email" className="subtitle">Email</label>
+        <label htmlFor="email" className="subtitle">
+          Email
+        </label>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -52,7 +54,9 @@ export const Login = (props) => {
         ></input>
 
         {/* Password */}
-        <label htmlFor="password" className="subtitle">Password</label>
+        <label htmlFor="password" className="subtitle">
+          Password
+        </label>
         <input
           value={pass}
           onChange={(e) => setPass(e.target.value)}
@@ -63,9 +67,7 @@ export const Login = (props) => {
         ></input>
 
         {/* Submit */}
-        <button type="submit" onClick={() => navigate("Home")}>
-          Log In
-        </button>
+        <button type="submit">Log In</button>
       </form>
 
       {/* New User*/}
