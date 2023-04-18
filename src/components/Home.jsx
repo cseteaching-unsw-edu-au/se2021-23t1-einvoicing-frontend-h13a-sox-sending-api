@@ -1,6 +1,14 @@
-import "./Registration.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import "./Single.css";
+import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
-  return <div className="home-page">Home Page</div>;
+  const navigate = useNavigate();
+
+  return (
+    <div className="home-page">
+      <p>Hello World</p>
+    </div>
+  );
 };

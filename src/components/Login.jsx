@@ -1,4 +1,6 @@
-import React, { useState } from "react"; /* Capture User Data */
+import React, { useState, useEffect } from "react";
+import "./Registration.css";
+import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export const Login = (props) => {
@@ -6,9 +8,32 @@ export const Login = (props) => {
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); /* Prevents page refresh on submit */
-    console.log(email);
+    try {
+      // Post Request
+      const response = await Axios.post("http://127.0.0.1:5000/auth/login", {
+        email: email,
+        password: pass,
+      });
+      // Handle response {200}
+      console.log(response);
+      //setReport(response.data);
+      localStorage.setItem("userDetails", JSON.stringify(response.data));
+      navigate("/", { state: { report: "HelloWorld" } });
+    } catch (err) {
+      // Handle error
+      if (err.response.data.message == "<p>Invalid Email</p>") {
+        //console.log(err);
+        console.log(err);
+        alert("Invalid Email, Please Registor First");
+      } else if (err.response.data.message == "<p>Incorrect Password</p>") {
+        console.log(err);
+        alert("Incorrect Password");
+      } else {
+        console.log(err);
+      }
+    }
   };
 
   return (
@@ -38,9 +63,7 @@ export const Login = (props) => {
         ></input>
 
         {/* Submit */}
-        <button type="submit" onClick={() => navigate("/")}>
-          Log In
-        </button>
+        <button type="submit">Submit</button>
       </form>
 
       {/* New User*/}
