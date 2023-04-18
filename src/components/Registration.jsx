@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Login } from "./Login";
-import { Registor } from "./Registor";
+import { Register } from "./Register";
 import "./Registration.css";
 
 export const Registration = () => {
@@ -15,7 +15,7 @@ export const Registration = () => {
       {currentForm === "login" ? (
         <Login onFormSwitch={toggleForm} />
       ) : (
-        <Registor onFormSwitch={toggleForm} />
+        <Register onFormSwitch={toggleForm} />
       )}
     </div>
   );

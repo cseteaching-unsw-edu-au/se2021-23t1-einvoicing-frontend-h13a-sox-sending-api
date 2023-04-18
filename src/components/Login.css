@@ -2,18 +2,16 @@
 .send-page {
   text-align: center;
   display: flex;
-  height: 788px;
-  width: 1440px;
   align-items: center;
   justify-content: center;
   color: white;
   background-color: #4680B0;
+  height: 788px;
+  width: 1440px;
 }
 
 .auth-form-container,
 .login-form,
-.register-form,
-.send-Invoice-form,
 .send-page {
   display: flex;
   flex-direction: column;

@@ -8,6 +8,7 @@ import { Confirmation } from "./components/Confirmation";
 import { RenderInvoice } from "./components/RenderInvoice";
 import { CreateInvoice } from "./components/CreateInvoice";
 import { StoreInvoice } from "./components/StoreInvoice";
+import { Inbox } from "./components/Inbox";
 import { Login } from "./components/Login";
 import { SignButton } from "./components/SignButton";
 
@@ -17,13 +18,14 @@ function App() {
       <SignButton />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="Registration" element={<Registration />}></Route>
+        <Route path="/" element={<Registration />}></Route>
+        <Route path="Home" element={<Home />}></Route>
         <Route path="SendInvoice" element={<SendInvoice />}></Route>
         <Route path="Confirmation" element={<Confirmation />}></Route>
         <Route path="RenderInvoice" element={<RenderInvoice />}></Route>
         <Route path="CreateInvoice" element={<CreateInvoice />}></Route>
         <Route path="StoreInvoice" element={<StoreInvoice />}></Route>
+        <Route path="Inbox" element={<Inbox />}></Route>
         <Route path="Login" element={<Login />}></Route>
       </Routes>
     </>
