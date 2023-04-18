@@ -23,10 +23,6 @@ export const Home = (props) => {
             </h1>
             <div className="navigation-c">
             <img className="logo-image" src={logo} alt="SOX" />
-            {/* Logout Button */}
-            <logout-button onClick={() => navigate("/")}>
-              <img className="logout" src={logout} alt="Logout" />
-            </logout-button>
             </div>
             <div>
             {/* Create Invoice Button */}
@@ -63,6 +59,11 @@ export const Home = (props) => {
             <home-page-button style={{position: "absolute", left: "900px", top: "525px" }} onClick={() => navigate("../Inbox")}>
               <img className="home-buttons" src={inbox} alt="Inbox" />
             </home-page-button>
+
+            {/* Logout Button */}
+            <logout-button onClick={() => navigate("/")}>
+              <img className="logout" src={logout} alt="Logout" />
+            </logout-button>
             </div>
           </div>
         </div>

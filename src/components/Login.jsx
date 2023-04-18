@@ -23,11 +23,11 @@ export const Login = (props) => {
       navigate("/", { state: { report: "HelloWorld" } });
     } catch (err) {
       // Handle error
-      if (err.response.data.message == "<p>Invalid Email</p>") {
+      if (err.response.data.message === "<p>Invalid Email</p>") {
         //console.log(err);
         console.log(err);
         alert("Invalid Email, Please Registor First");
-      } else if (err.response.data.message == "<p>Incorrect Password</p>") {
+      } else if (err.response.data.message === "<p>Incorrect Password</p>") {
         console.log(err);
         alert("Incorrect Password");
       } else {

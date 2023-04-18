@@ -28,22 +28,22 @@ export const Register = (props) => {
       props.onFormSwitch("login");
     } catch (err) {
       // Handle Invalid Email
-      if (err.response.data.message == "<p>Email is not valid</p>") {
+      if (err.response.data.message === "<p>Email is not valid</p>") {
         console.log(err);
         alert("Invalid Email");
-      } else if (err.response.data.message == "<p>Password is too short</p>") {
+      } else if (err.response.data.message === "<p>Password is too short</p>") {
         console.log(err);
         alert("Password is too short");
-      } else if (err.response.data.message == "<p>Email is already taken</p>") {
+      } else if (err.response.data.message === "<p>Email is already taken</p>") {
         console.log(err);
         alert("Email is already taken");
       } else if (
-        err.response.data.message == "<p>First name is too short or long</p>"
+        err.response.data.message === "<p>First name is too short or long</p>"
       ) {
         console.log(err);
         alert("First name is too short or long");
       } else if (
-        err.response.data.message == "<p>Last name is too short or long</p>"
+        err.response.data.message === "<p>Last name is too short or long</p>"
       ) {
         console.log(err);
         alert("Last name is too short or long");

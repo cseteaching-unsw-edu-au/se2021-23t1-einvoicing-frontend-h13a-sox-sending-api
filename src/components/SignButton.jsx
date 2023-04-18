@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
 import "./Single.css";
-import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import logout from "../icons/Logout.png";
 
 export const SignButton = () => {
   const navigate = useNavigate();
@@ -14,9 +13,9 @@ export const SignButton = () => {
 
   function logOut() {
     userDetails === null
-      ? navigate("/Registration")
+      ? navigate("/")
       : localStorage.removeItem("userDetails");
-    navigate("/Registration");
+    navigate("/");
   }
 
   return (
@@ -26,7 +25,9 @@ export const SignButton = () => {
       </div>
 
       <div className="user-log">
-        <button className="link-btn" onClick={() => logOut()}>
+        <button className="logout" onClick={() => logOut()}>
+          {/* Logout Button */}
+          <img className="logout" src={logout} alt="Logout" />
           {userDetails === null ? "Sign In" : "Sign Out"}
         </button>
       </div>
