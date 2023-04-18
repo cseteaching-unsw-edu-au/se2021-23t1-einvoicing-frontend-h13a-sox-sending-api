@@ -36,6 +36,23 @@ button {
   color: #4680B0;
 }
 
+.user-log {
+  border: none;
+  text-align: center;
+  font-size: 15px;
+  width: 100px;
+  height: 30px;
+  padding: 2px;
+  color: white;
+  border-radius: 20px;
+  background-color: brown;
+  cursor: pointer; /*brings thumb on hover*/
+}
+
+.user-info {
+  text-align: right;
+}
+
 .link-btn {
   background: none;
   color: white;

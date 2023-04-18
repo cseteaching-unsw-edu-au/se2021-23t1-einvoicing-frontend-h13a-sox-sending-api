@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import "./Registration.css";
+import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Style.css";
 
@@ -9,9 +11,46 @@ export const Register = (props) => {
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(pass);
+  const handleSubmit = async (e) => {
+    e.preventDefault(); /* Prevents page refresh on submit */
+    try {
+      // Post Request
+      const response = await Axios.post("http://127.0.0.1:5000/auth/register", {
+        email: email,
+        password: pass,
+        name_first: firstName,
+        name_last: lastName,
+      });
+      // Handle response {200}
+      console.log(response);
+      //setReport(response.data);
+      //localStorage.setItem("userDetails", JSON.stringify(response.data));
+      props.onFormSwitch("login");
+    } catch (err) {
+      // Handle Invalid Email
+      if (err.response.data.message == "<p>Email is not valid</p>") {
+        console.log(err);
+        alert("Invalid Email");
+      } else if (err.response.data.message == "<p>Password is too short</p>") {
+        console.log(err);
+        alert("Password is too short");
+      } else if (err.response.data.message == "<p>Email is already taken</p>") {
+        console.log(err);
+        alert("Email is already taken");
+      } else if (
+        err.response.data.message == "<p>First name is too short or long</p>"
+      ) {
+        console.log(err);
+        alert("First name is too short or long");
+      } else if (
+        err.response.data.message == "<p>Last name is too short or long</p>"
+      ) {
+        console.log(err);
+        alert("Last name is too short or long");
+      } else {
+        console.log(err);
+      }
+    }
   };
 
   return (

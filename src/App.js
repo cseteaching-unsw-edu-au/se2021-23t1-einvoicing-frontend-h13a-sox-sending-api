@@ -9,10 +9,13 @@ import { RenderInvoice } from "./components/RenderInvoice";
 import { CreateInvoice } from "./components/CreateInvoice";
 import { StoreInvoice } from "./components/StoreInvoice";
 import { Inbox } from "./components/Inbox";
+import { Login } from "./components/Login";
+import { SignButton } from "./components/SignButton";
 
 function App() {
   return (
     <>
+      <SignButton />
       <Navbar />
       <Routes>
         <Route path="/" element={<Registration />}></Route>
@@ -23,6 +26,7 @@ function App() {
         <Route path="CreateInvoice" element={<CreateInvoice />}></Route>
         <Route path="StoreInvoice" element={<StoreInvoice />}></Route>
         <Route path="Inbox" element={<Inbox />}></Route>
+        <Route path="Login" element={<Login />}></Route>
       </Routes>
     </>
   );
