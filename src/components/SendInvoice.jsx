@@ -59,10 +59,10 @@ export const SendInvoice = (props) => {
         />
       ) : (
         <>
-          <h2>Send E-Invoice</h2>
+          <h2 className="large-text-white">Send E-Invoice</h2>
           <form className="send-Invoice-form" onSubmit={handleSubmit}>
             {/* recipient Email */}
-            <label htmlFor="email">Recipients Email</label>
+            <label className="title-white" htmlFor="email">Recipients Email</label>
             <input
               value={receiver_email}
               onChange={(e) => setreceiver_email(e.target.value)}
@@ -73,7 +73,7 @@ export const SendInvoice = (props) => {
             ></input>
 
             {/* filename */}
-            <label htmlFor="file_name">filename</label>
+            <label className="title-white" htmlFor="file_name">File Name</label>
             <input
               value={file_name}
               onChange={(e) => setfilename(e.target.value)}
@@ -83,7 +83,7 @@ export const SendInvoice = (props) => {
               name="file_name"
             ></input>
             {/* XML Data */}
-            <label htmlFor="xml_data">Xml Data</label>
+            <label className="title-white" htmlFor="xml_data">Xml Data</label>
             <input
               value={xml_data}
               onChange={(e) => setxml_data(e.target.value)}
@@ -91,9 +91,10 @@ export const SendInvoice = (props) => {
               placeholder="<?xml version= .... </Invoice>"
               id="xml_data"
               name="xml_data"
+              style={{marginBottom: "20px"}}
             ></input>
             {/* Submit */}
-            <button type="submit">Send E-Invoice</button>
+            <button className="subtitle-steel-blue" type="submit">Send E-Invoice</button>
           </form>
         </>
       )}

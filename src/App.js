@@ -7,9 +7,11 @@ import { SendInvoice } from "./components/SendInvoice";
 import { Confirmation } from "./components/Confirmation";
 import { RenderInvoice } from "./components/RenderInvoice";
 import { CreateInvoice } from "./components/CreateInvoice";
+import { AuthenticateInvoice } from "./components/AuthenticateInvoice";
 import { StoreInvoice } from "./components/StoreInvoice";
 import { Inbox } from "./components/Inbox";
 import { Login } from "./components/Login";
+import { Success } from "./components/Success";
 import { SignButton } from "./components/SignButton";
 
 function App() {
@@ -23,9 +25,11 @@ function App() {
         <Route path="Confirmation" element={<Confirmation />}></Route>
         <Route path="RenderInvoice" element={<RenderInvoice />}></Route>
         <Route path="CreateInvoice" element={<CreateInvoice />}></Route>
+        <Route path="AuthenticateInvoice" element={<AuthenticateInvoice />}></Route>
         <Route path="StoreInvoice" element={<StoreInvoice />}></Route>
         <Route path="Inbox" element={<Inbox />}></Route>
         <Route path="Login" element={<Login />}></Route>
+        <Route path="Success" element={<Success />}></Route>
       </Routes>
     </>
   );

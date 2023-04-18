@@ -34,14 +34,14 @@ export const Navbar = (props) => {
     <nav>
       <div className="navigation-c">
         <div style={{ display: 'flex' }}>
-          <NavLink to="Home">
+          <NavLink to="/">
             <img src={logo} alt="SOX" style={{ height:"50px", width:"50px"}}/>
           </NavLink>
           <NavLink to="/CreateInvoice">
             { location.pathname === "/CreateInvoice" ? <img src={blue_create} alt="Create Invoice" /> : <img src={white_create} alt="Create Invoice" /> }
           </NavLink>
-          <NavLink to="/RenderInvoice">
-            { location.pathname === "/RenderInvoice" ? <img src={blue_authenticate} alt="Authenticate Invoice" /> : <img src={white_authenticate} alt="Authenticate Invoice" /> }
+          <NavLink to="/AuthenticateInvoice">
+            { location.pathname === "/AuthenticateInvoice" ? <img src={blue_authenticate} alt="Authenticate Invoice" /> : <img src={white_authenticate} alt="Authenticate Invoice" /> }
           </NavLink>
           <NavLink to="/RenderInvoice">
             { location.pathname === "/RenderInvoice" ? <img src={blue_render} alt="Render Invoice" /> : <img src={white_render} alt="Render Invoice" /> }
@@ -57,7 +57,7 @@ export const Navbar = (props) => {
           </NavLink>
           <logout-button onClick={() => logOut()}>
           {userDetails === null ? (
-            <img className="logout" src={login} alt="Logout" />
+            <img className="logout" src={login} alt="Login" />
           ) : (
             <img className="logout" src={logout} alt="Logout" />
           )}

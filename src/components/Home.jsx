@@ -66,7 +66,7 @@ export const Home = (props) => {
               {/* Authenticate Invoice Button */}
               <home-page-button
                 style={{ position: "absolute", left: "600px", top: "225px" }}
-                onClick={() => navigate("../CreateInvoice")}
+                onClick={() => navigate("../AuthenticateInvoice")}
               >
                 <img
                   className="home-buttons"
