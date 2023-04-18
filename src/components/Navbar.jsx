@@ -1,6 +1,7 @@
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import logo from "../icons/Logo.png";
 import logout from "../icons/Logout.png";
+import login from "../icons/Login.png";
 import white_create from "../icons/WhiteCreateNav.png";
 import blue_create from "../icons/BlueCreateNav.png";
 import white_authenticate from "../icons/WhiteAuthenticateNav.png";
@@ -16,10 +17,18 @@ import blue_inbox from "../icons/BlueInboxNav.png";
 import "./Navbar.css";
 import "./Style.css";
 
-
 export const Navbar = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+  function logOut() {
+    userDetails === null
+      ? navigate("/Registration")
+      : localStorage.removeItem("userDetails");
+    navigate("/Registration");
+  }
 
   return (
     <nav>
@@ -46,6 +55,13 @@ export const Navbar = (props) => {
           <NavLink to="/Inbox">
             { location.pathname === "/Inbox" ? <img src={blue_inbox} alt="Inbox" /> : <img src={white_inbox} alt="Inbox" /> }
           </NavLink>
+          <logout-button onClick={() => logOut()}>
+          {userDetails === null ? (
+            <img className="logout" src={login} alt="Logout" />
+          ) : (
+            <img className="logout" src={logout} alt="Logout" />
+          )}
+          </logout-button>
         </div>
       </div>
     </nav>
