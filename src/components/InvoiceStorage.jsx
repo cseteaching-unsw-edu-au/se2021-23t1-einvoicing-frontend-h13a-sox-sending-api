@@ -7,22 +7,23 @@ import CircleLoader from "react-spinners/CircleLoader";
 export const InvoiceStorage = () => {
   const [einvoice, setEinvoice] = useState("");
   const [loading, setLoading] = useState(false);
+  const [data2, setData2] = useState([]);
+  const [deleted, setDeleted] = useState([]);
+  const numbers = [4, 3, 5, 1];
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
 
   useEffect(() => {
-    setLoading(false);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+    getInvoices();
   }, []);
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+  const data = JSON.parse(localStorage.getItem("invoices"));
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); /* Prevents page refresh on submit */
+  const getInvoices = async (e) => {
+    //e.preventDefault(); /* Prevents page refresh on submit */
+    setLoading(true);
     try {
       // Post Request
 
@@ -32,19 +33,94 @@ export const InvoiceStorage = () => {
         },
       };
       const response = await Axios.post("http://127.0.0.1:5000/storage/list", {
-        user_id: "0",
+        user_id: userDetails.auth_user_id,
       });
       // Handle response {200}
-      setData(response.data);
+      localStorage.setItem("invoices", JSON.stringify(response.data));
+      setData2(response.data.invoices);
 
-      await delay(5000);
-      console.log(data);
+      console.log(response.data);
       //setReport(response.data);
     } catch (err) {
       // Handle error
       //console.error(err);
       console.log(err);
     }
+    setLoading(false);
+  };
+
+  const handleDelete = async (e) => {
+    setLoading(true);
+    try {
+      // Post Request
+      const response = await Axios.post(
+        "http://127.0.0.1:5000/storage/delete_invoice",
+        {
+          user_id: userDetails.auth_user_id,
+          invoice_id: einvoice,
+        }
+      );
+      // Handle response {200}
+      console.log(response);
+      await delay(500);
+      getInvoices();
+      //setReport(response.data);
+    } catch (err) {
+      // Handle error
+      //console.error(err);
+      console.log(err);
+    }
+    setLoading(false);
+  };
+
+  const handleRender = async (e) => {
+    setLoading(true);
+    try {
+      // Post Request
+      const response = await Axios.post(
+        "http://127.0.0.1:5000/storage/delete_invoice",
+        {
+          user_id: userDetails.auth_user_id,
+          invoice_id: einvoice,
+        }
+      );
+      // Handle response {200}
+      console.log(response);
+      await delay(500);
+      getInvoices();
+      //setReport(response.data);
+    } catch (err) {
+      // Handle error
+      //console.error(err);
+      console.log(err);
+    }
+    setLoading(false);
+  };
+
+  const handleSend = async (e) => {
+    setLoading(true);
+    try {
+      // Post Request
+      const response = await Axios.post(
+        "http://127.0.0.1:5000/send/send_invoice_id",
+        {
+          user_id: "0",
+          receiver_email: "sixrip7er@gmail.com",
+          file_name: "exampl2.xml",
+          invoice_id: "0",
+        }
+      );
+      // Handle response {200}
+      console.log(response);
+      await delay(500);
+      getInvoices();
+      //setReport(response.data);
+    } catch (err) {
+      // Handle error
+      //console.error(err);
+      console.log(err);
+    }
+    setLoading(false);
   };
 
   return (
@@ -59,22 +135,51 @@ export const InvoiceStorage = () => {
         />
       ) : (
         <>
-          <h2>Store E-Invoice</h2>
-          <form className="single-form" onSubmit={handleSubmit}>
+          <h2>E-Invoice Storage</h2>
+          <form className="single-form">
             {/* xml_data */}
-            <label htmlFor="einvoice">XML Data</label>
+            <label htmlFor="einvoice">Invoice ID</label>
             <input
               value={einvoice}
               onChange={(e) => setEinvoice(e.target.value)}
               type="text"
-              placeholder="<b Invoice xml.....ns=\>"
+              placeholder="2"
               id="einvoice"
               name="einvoice"
             ></input>
 
-            {/* Submit */}
-            <button type="submit">Store E-Invoice</button>
+            {/* Delete Invoice */}
+            <button type="submit" onClick={() => handleDelete()}>
+              Delete Invoice
+            </button>
+
+            {/* Render Invoice */}
+            <button type="submit" onClick={() => handleRender()}>
+              Render Invoice
+            </button>
+
+            {/* Send Invoice */}
+            <button type="submit" onClick={() => handleSend()}>
+              Send Invoice
+            </button>
           </form>
+          <table>
+            <thead>
+              <tr>
+                <th>Invoice ID</th>
+                <th>Created Date</th>
+                <th>File Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data2.map((item) => (
+                <tr>
+                  <td>{item.invoice_id}</td>
+                  <td>{item.created_date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </>
       )}
     </div>

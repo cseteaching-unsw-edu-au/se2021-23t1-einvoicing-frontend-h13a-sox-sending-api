@@ -3,7 +3,7 @@ import "./Single.css";
 import Axios from "axios";
 import axios from "axios";
 
-export const CreateInvoice = () => {
+export const CreateInvoice = (props) => {
   const [type, setType] = useState("");
   const [file, setFile] = useState(null);
 
