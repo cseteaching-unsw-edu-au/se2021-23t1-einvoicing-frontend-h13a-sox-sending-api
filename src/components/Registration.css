@@ -2,12 +2,12 @@
 .send-page {
   text-align: center;
   display: flex;
-  height: 788px;
-  width: 1440px;
+  height: 100vh;
+  width: auto;
   align-items: center;
   justify-content: center;
   color: white;
-  background-color: #4680B0;
+  background-color: #4680b0;
 }
 
 .register-form,
@@ -37,7 +37,7 @@ button {
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
-  color: #4680B0;
+  color: #4680b0;
 }
 
 .link-btn {

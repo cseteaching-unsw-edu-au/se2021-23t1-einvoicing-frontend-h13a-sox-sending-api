@@ -4,9 +4,9 @@
   align-items: center;
   justify-content: center;
   color: white;
-  background-color: #4680B0;
-  height: 788px;
-  width: 1440px;
+  background-color: #4680b0;
+  height: 100vh;
+  width: auto;
 }
 
 .single-form,
@@ -34,7 +34,7 @@ button {
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
-  color: #4680B0;
+  color: #4680b0;
 }
 
 .user-log {
