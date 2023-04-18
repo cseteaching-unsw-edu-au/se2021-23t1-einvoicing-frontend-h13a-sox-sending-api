@@ -95,10 +95,10 @@ export const RenderInvoice = () => {
           />
         ) : (
           <>
-            <h2>Render E-Invoice</h2>
+            <h2 className="large-text-white" >Render E-Invoice</h2>
             <form className="single-form" onSubmit={handleSubmit}>
               {/* inputFile */}
-              <label htmlFor="inputFile">XML Data</label>
+              <label className="title-white" htmlFor="inputFile">XML Data</label>
               <input
                 value={inputFile}
                 onChange={(e) => setinputFile(e.target.value)}
@@ -109,19 +109,19 @@ export const RenderInvoice = () => {
               ></input>
 
               {/* Option */}
-              <label htmlFor="option">Option</label>
+              <label className="title-white" htmlFor="option">Option</label>
               <select
                 value={option}
                 onChange={(e) => setOption(e.target.value)}
                 id="option"
                 name="option"
+                style={{padding:"10px", marginTop:"10px", marginBottom:"20px", borderRadius:"10px"}}
               >
                 <option value="Simple">Simple</option>
                 <option value="Modern">Modern</option>
               </select>
-
               {/* Submit */}
-              <button type="submit">Render E-Invoice</button>
+              <button className="subtitle-steel-blue" type="submit">Render E-Invoice</button>
             </form>
           </>
         )}

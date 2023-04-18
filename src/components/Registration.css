@@ -10,8 +10,6 @@
   background-color: #4680B0;
 }
 
-.auth-form-container,
-.login-form,
 .register-form,
 .send-Invoice-form,
 .send-page {
@@ -28,6 +26,8 @@ input {
   margin: 0.5rem 0;
   padding: 1rem;
   border: none;
+  height: 30px;
+  width: 350px;
   border-radius: 10px;
 }
 

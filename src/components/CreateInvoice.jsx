@@ -42,10 +42,10 @@ export const CreateInvoice = (props) => {
 
   return (
     <div className="single-page">
-      <h2>Create E-Invoice</h2>
+      <h2 className="large-text-white">Create E-Invoice</h2>
       <form className="single-form" onSubmit={handleSubmit}>
         {/* type of input */}
-        <label htmlFor="type">Type of Input</label>
+        <label className="title-white" htmlFor="type">Type of Input</label>
         <input
           value={type}
           onChange={(e) => setType(e.target.value)}
@@ -56,7 +56,7 @@ export const CreateInvoice = (props) => {
         ></input>
 
         {/* file */}
-        <label htmlFor="file">File Upload</label>
+        <label className="title-white" htmlFor="file">File Upload</label>
         <input
           value={file}
           onChange={(e) => setFile(e.target.value)}
@@ -66,7 +66,7 @@ export const CreateInvoice = (props) => {
         ></input>
 
         {/* Submit */}
-        <button type="submit">Create E-Invoice</button>
+        <button className="subtitle-steel-blue" type="submit">Create E-Invoice</button>
       </form>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Registration.css";
+import "./Login.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -23,11 +23,11 @@ export const Login = (props) => {
       navigate("/", { state: { report: "HelloWorld" } });
     } catch (err) {
       // Handle error
-      if (err.response.data.message == "<p>Invalid Email</p>") {
+      if (err.response.data.message === "<p>Invalid Email</p>") {
         //console.log(err);
         console.log(err);
         alert("Invalid Email, Please Registor First");
-      } else if (err.response.data.message == "<p>Incorrect Password</p>") {
+      } else if (err.response.data.message === "<p>Incorrect Password</p>") {
         console.log(err);
         alert("Incorrect Password");
       } else {
@@ -38,10 +38,10 @@ export const Login = (props) => {
 
   return (
     <div className="auth-form-container">
-      <h2 className="title">Login</h2>
+      <h2 className="large-text-white">Login</h2>
       <form className="login-form" onSubmit={handleSubmit}>
         {/* Email */}
-        <label htmlFor="email" className="subtitle">
+        <label htmlFor="email" className="title-white">
           Email
         </label>
         <input
@@ -54,7 +54,7 @@ export const Login = (props) => {
         ></input>
 
         {/* Password */}
-        <label htmlFor="password" className="subtitle">
+        <label htmlFor="password" className="title-white">
           Password
         </label>
         <input
@@ -67,7 +67,7 @@ export const Login = (props) => {
         ></input>
 
         {/* Submit */}
-        <button type="submit">Log In</button>
+        <button className="subtitle-steel-blue" type="submit">Log In</button>
       </form>
 
       {/* New User*/}

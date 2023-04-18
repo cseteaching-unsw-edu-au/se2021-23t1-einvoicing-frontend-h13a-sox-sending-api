@@ -1,5 +1,5 @@
 .authentication-page,
-.send-page {
+.login-page {
   text-align: center;
   display: flex;
   align-items: center;
@@ -11,8 +11,7 @@
 }
 
 .auth-form-container,
-.login-form,
-.send-page {
+.login-form {
   display: flex;
   flex-direction: column;
 }

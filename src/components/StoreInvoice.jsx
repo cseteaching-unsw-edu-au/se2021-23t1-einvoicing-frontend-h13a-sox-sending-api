@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Single.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -32,10 +32,10 @@ export const StoreInvoice = () => {
 
   return (
     <div className="single-page">
-      <h2>Store E-Invoice</h2>
+      <h2 className="large-text-white" >Store E-Invoice</h2>
       <form className="single-form" onSubmit={handleSubmit}>
         {/* xml_data */}
-        <label htmlFor="einvoice">XML Data</label>
+        <label className="title-white" htmlFor="einvoice">XML Data</label>
         <input
           value={einvoice}
           onChange={(e) => setEinvoice(e.target.value)}
@@ -43,10 +43,11 @@ export const StoreInvoice = () => {
           placeholder="<b Invoice xml.....ns=\>"
           id="einvoice"
           name="einvoice"
+          style={{marginBottom:"20px", marginTop:"10px"}}
         ></input>
 
         {/* Submit */}
-        <button type="submit">Store E-Invoice</button>
+        <button className="subtitle-steel-blue" type="submit">Store E-Invoice</button>
       </form>
     </div>
   );
