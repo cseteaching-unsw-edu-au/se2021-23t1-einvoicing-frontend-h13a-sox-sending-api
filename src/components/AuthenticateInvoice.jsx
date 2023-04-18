@@ -35,6 +35,7 @@ export const AuthenticateInvoice = () => {
             placeholder="12345"
             id="inputFile"
             name="inputFile"
+            style={{marginBottom:"20px", marginTop: "10px"}}
           ></input>
           {/* Submit */}
           <button
