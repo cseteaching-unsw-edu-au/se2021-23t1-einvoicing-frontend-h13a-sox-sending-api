@@ -88,7 +88,7 @@ export const RenderInvoice = (props) => {
 
   return (
     <>
-      <div className="single-page">
+      <div className>
         {loading ? (
           <CircleLoader
             color={"#36d7b7"}

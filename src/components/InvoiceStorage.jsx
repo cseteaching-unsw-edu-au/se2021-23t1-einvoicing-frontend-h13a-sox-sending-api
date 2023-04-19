@@ -7,6 +7,7 @@ import { Popup } from "./Popup";
 import { SendInvoice } from "./SendInvoiceStorage";
 import { RenderInvoice } from "./RenderInvoiceStorage";
 import { DeleteInvoice } from "./DeleteInvoiceStorage";
+import { StoreInvoice } from "./StoreInvoiceStorage";
 
 export const InvoiceStorage = () => {
   const [einvoice, setEinvoice] = useState("");
@@ -15,6 +16,8 @@ export const InvoiceStorage = () => {
   const [buttonPopupSend, setButtonPupupSend] = useState(false);
   const [buttonPopupDelete, setButtonPupupDelete] = useState(false);
   const [buttonPopupRender, setButtonPupupRender] = useState(false);
+  const [buttonPopupStore, setButtonPupupStore] = useState(false);
+  const [xmlData, setXmlData] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,6 +71,31 @@ export const InvoiceStorage = () => {
       // Handle response {200}
       console.log(response);
       await delay(500);
+      getInvoices();
+      //setReport(response.data);
+    } catch (err) {
+      // Handle error
+      //console.error(err);
+      console.log(err);
+    }
+    setLoading(false);
+  };
+
+  const handleStore = async (e) => {
+    setLoading(true);
+    try {
+      // Post Request
+      const response = await Axios.post(
+        "http://127.0.0.1:5000/storage/upload",
+        {
+          user_id: userDetails.auth_user_id,
+          data: xmlData,
+        }
+      );
+      // Handle response {200}
+      console.log(response);
+      await delay(500);
+      getInvoices();
       //setReport(response.data);
     } catch (err) {
       // Handle error
@@ -114,6 +142,30 @@ export const InvoiceStorage = () => {
               Delete Invoice
             </button>
 
+            {/* xml_data */}
+            <label className="title-white" htmlFor="xml_data">
+              XML Data
+            </label>
+            <input
+              value={xmlData}
+              onChange={(e) => setXmlData(e.target.value)}
+              type="text"
+              placeholder="<b Invoice xml.....ns=\>"
+              id="xml_data"
+              name="xml_data"
+              style={{ marginBottom: "20px", marginTop: "10px" }}
+            ></input>
+
+            {/* Delete Invoice */}
+            <button
+              className="subtitle-steel-blue"
+              type="submit"
+              onClick={() => handleStore()}
+              style={{ marginBottom: "20px" }}
+            >
+              Store Invoice
+            </button>
+
             {/* Handle Render */}
             <button
               className="subtitle-steel-blue"
@@ -136,6 +188,14 @@ export const InvoiceStorage = () => {
             </button>
             <Popup trigger={buttonPopupSend} setTrigger={setButtonPupupSend}>
               <SendInvoice></SendInvoice>
+            </Popup>
+
+            {/* Store Invoice */}
+            <button onClick={() => setButtonPupupStore(true)}>
+              Store Invoice
+            </button>
+            <Popup trigger={buttonPopupStore} setTrigger={setButtonPupupStore}>
+              <StoreInvoice></StoreInvoice>
             </Popup>
 
             <table>
