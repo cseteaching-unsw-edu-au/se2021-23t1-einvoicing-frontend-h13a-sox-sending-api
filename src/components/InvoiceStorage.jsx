@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CircleLoader from "react-spinners/CircleLoader";
 import { Popup } from "./Popup";
 import { SendInvoice } from "./SendInvoiceStorage";
+
 import { RenderInvoice } from "./RenderInvoiceStorage";
 import { DeleteInvoice } from "./DeleteInvoiceStorage";
 import { StoreInvoice } from "./StoreInvoiceStorage";
@@ -15,11 +16,9 @@ export const InvoiceStorage = () => {
   const [loading, setLoading] = useState(false);
   const [data2, setData2] = useState([]);
   const [buttonPopupSend, setButtonPupupSend] = useState(false);
-  const [buttonPopupDelete, setButtonPupupDelete] = useState(false);
-  const [buttonPopupRender, setButtonPupupRender] = useState(false);
-  const [buttonPopupStore, setButtonPupupStore] = useState(false);
   const [xmlData, setXmlData] = useState("");
   const [xml_file, setXMLFile] = useState("");
+  const [filename, setFileName] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,7 +32,7 @@ export const InvoiceStorage = () => {
 
   function logInService() {
     userDetails === null
-      ? alert("Please register and login to use this service.")
+      ? navigate("/Registration", { state: { report: "HelloWorld" } })
       : console.log("");
   }
 
@@ -77,7 +76,7 @@ export const InvoiceStorage = () => {
         "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/storage/delete_invoice",
         {
           user_id: userDetails.auth_user_id,
-          invoice_id: einvoice,
+          invoice_id: data.invoices[einvoice].invoice_id,
         }
       );
       // Handle response {200}
@@ -109,6 +108,7 @@ export const InvoiceStorage = () => {
         {
           user_id: userDetails.auth_user_id,
           data: xmlData,
+          filename: filename,
         }
       );
       // Handle response {200}
@@ -127,6 +127,7 @@ export const InvoiceStorage = () => {
   function handleXMLFile(e) {
     console.log(e.target.files);
     setXMLFile(e.target.files[0]);
+    setFileName(e.target.files[0].name);
     const reader = new FileReader();
     reader.readAsText(e.target.files[0]);
     reader.onload = () => {
@@ -199,7 +200,7 @@ export const InvoiceStorage = () => {
       if (error.response.status == 422) {
         console.log(error);
         alert(
-          "Invoice could not be rendered. Please enter XML String from validated e-invoice!"
+          "Invoice could not be rendered. Please input a validated E-Invoice XML and try again!"
         );
       } else {
         console.log(error);
@@ -298,10 +299,11 @@ export const InvoiceStorage = () => {
                 </tr>
               </thead>
               <tbody>
-                {data2.map((item) => (
+                {data2.map((item, index) => (
                   <tr>
-                    <td>{item.invoice_id}</td>
+                    <td>{index}</td>
                     <td>{item.created_date}</td>
+                    <td>{item.filename}</td>
                   </tr>
                 ))}
               </tbody>

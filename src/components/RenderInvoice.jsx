@@ -6,9 +6,9 @@ import CircleLoader from "react-spinners/CircleLoader";
 
 export const RenderInvoice = () => {
   const [loading, setLoading] = useState(false);
-
   const [inputFile, setinputFile] = useState("");
   const [option, setOption] = useState("");
+  const [xml_file, setXMLFile] = useState("");
   const navigate = useNavigate();
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
@@ -73,7 +73,7 @@ export const RenderInvoice = () => {
       if (error.response.status == 422) {
         console.log(error);
         alert(
-          "Invoice could not be rendered. Please enter XML String from validated e-invoice!"
+          "Invoice could not be rendered. Please input a validated E-Invoice XML and try again!"
         );
       } else {
         console.log(error);
@@ -81,6 +81,20 @@ export const RenderInvoice = () => {
     }
     setLoading(false);
   };
+
+  function handleXMLFile(e) {
+    console.log(e.target.files);
+    setXMLFile(e.target.files[0]);
+    const reader = new FileReader();
+    reader.readAsText(e.target.files[0]);
+    reader.onload = () => {
+      setinputFile(reader.result);
+    };
+
+    reader.onerror = () => {
+      console.log("file error", reader.error);
+    };
+  }
 
   return (
     <>
@@ -95,33 +109,43 @@ export const RenderInvoice = () => {
           />
         ) : (
           <>
-            <h2 className="large-text-white" >Render E-Invoice</h2>
+            <h2 className="large-text-white">Render E-Invoice</h2>
             <form className="single-form" onSubmit={handleSubmit}>
-              {/* inputFile */}
-              <label className="title-white" htmlFor="inputFile">XML Data</label>
+              {/* file */}
+              <label className="title-white" htmlFor="file">
+                File Upload
+              </label>
               <input
-                value={inputFile}
-                onChange={(e) => setinputFile(e.target.value)}
-                type="text"
-                placeholder="<?xml version= .... </Invoice>"
-                id="inputFile"
-                name="inputFile"
+                type="file"
+                id="file"
+                name="file"
+                style={{ marginBottom: "1px" }}
+                onChange={handleXMLFile}
               ></input>
 
               {/* Option */}
-              <label className="title-white" htmlFor="option">Option</label>
+              <label className="title-white" htmlFor="option">
+                Option
+              </label>
               <select
                 value={option}
                 onChange={(e) => setOption(e.target.value)}
                 id="option"
                 name="option"
-                style={{padding:"10px", marginTop:"10px", marginBottom:"20px", borderRadius:"10px"}}
+                style={{
+                  padding: "10px",
+                  marginTop: "10px",
+                  marginBottom: "20px",
+                  borderRadius: "10px",
+                }}
               >
                 <option value="Simple">Simple</option>
                 <option value="Modern">Modern</option>
               </select>
               {/* Submit */}
-              <button className="subtitle-steel-blue" type="submit">Render E-Invoice</button>
+              <button className="subtitle-steel-blue" type="submit">
+                Render E-Invoice
+              </button>
             </form>
           </>
         )}
