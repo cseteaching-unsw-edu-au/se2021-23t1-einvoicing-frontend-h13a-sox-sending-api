@@ -16,7 +16,7 @@
   left: 0;
   position: absolute;
   top: 1px;
-  width: 1440px;
+  width: 100%;
 }
 
 .logout {
@@ -36,7 +36,7 @@
   line-height: normal;
   min-height: 38px;
   text-align: center;
-  width: 117px;
+  width: auto;
 }
 
 .header {

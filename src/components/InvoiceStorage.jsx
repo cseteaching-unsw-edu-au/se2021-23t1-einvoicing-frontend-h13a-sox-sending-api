@@ -155,9 +155,7 @@ export const InvoiceStorage = () => {
                 Store Invoice
               </button>
               {/* Invoice_ID */}
-              <label className="title-white" htmlFor="einvoice">
-                Invoice ID
-              </label>
+              <label className="title-white" htmlFor="einvoice">Invoice ID</label>
               <input
                 value={einvoice}
                 onChange={(e) => setEinvoice(e.target.value)}
@@ -181,8 +179,7 @@ export const InvoiceStorage = () => {
             {/* Handle Render */}
             <button
               className="subtitle-steel-blue"
-              onClick={() => setButtonPupupRender(true)}
-            >
+              onClick={() => setButtonPupupRender(true)}>
               Render Invoice
             </button>
             <Popup
@@ -195,8 +192,7 @@ export const InvoiceStorage = () => {
             {/* Send Invoice */}
             <button
               className="subtitle-steel-blue"
-              onClick={() => setButtonPupupSend(true)}
-            >
+              onClick={() => setButtonPupupSend(true)}>
               Send Invoice
             </button>
             <Popup trigger={buttonPopupSend} setTrigger={setButtonPupupSend}>
