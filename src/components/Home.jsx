@@ -18,7 +18,7 @@ export const Home = (props) => {
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
 
   function logOut() {
-    location.pathname === "/Registration"
+    userDetails === null
       ? navigate("/Registration")
       : localStorage.removeItem("userDetails");
     navigate("/Registration");
@@ -40,7 +40,7 @@ export const Home = (props) => {
         <img className="logo-image" src={logo} alt="SOX" />
         {/* Logout Button */}
         <logout-button onClick={() => logOut()}>
-          {location.pathname === "/Registration" ? (
+          {userDetails === null ? (
             <img className="logout" src={login} alt="Login" />
           ) : (
             <img className="logout" src={logout} alt="Logout" />
