@@ -12,6 +12,7 @@
 
 .auth-form-container,
 .login-form {
+  border:none;
   display: flex;
   flex-direction: column;
 }
