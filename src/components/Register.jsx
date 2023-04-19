@@ -15,15 +15,12 @@ export const Register = (props) => {
     e.preventDefault(); /* Prevents page refresh on submit */
     try {
       // Post Request
-      const response = await Axios.post(
-        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/auth/register",
-        {
-          email: email,
-          password: pass,
-          name_first: firstName,
-          name_last: lastName,
-        }
-      );
+      const response = await Axios.post("http://127.0.0.1:5000/auth/register", {
+        email: email,
+        password: pass,
+        name_first: firstName,
+        name_last: lastName,
+      });
       // Handle response {200}
       console.log(response);
       //setReport(response.data);
@@ -37,9 +34,7 @@ export const Register = (props) => {
       } else if (err.response.data.message === "<p>Password is too short</p>") {
         console.log(err);
         alert("Password is too short");
-      } else if (
-        err.response.data.message === "<p>Email is already taken</p>"
-      ) {
+      } else if (err.response.data.message === "<p>Email is already taken</p>") {
         console.log(err);
         alert("Email is already taken");
       } else if (
@@ -111,9 +106,11 @@ export const Register = (props) => {
           id="password"
         ></input>
         {/* submit */}
-        {/* Submit */}
-        <button className="subtitle-steel-blue" type="submit">
-          Log In
+        <button
+          type="submit"
+          className="subtitle-steel-blue"
+          onClick={() => navigate("../")}>
+          Register
         </button>
       </form>
       <button className="link-btn" onClick={() => props.onFormSwitch("login")}>

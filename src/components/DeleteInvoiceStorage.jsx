@@ -18,7 +18,7 @@ export const DeleteInvoice = (props) => {
     try {
       // Post Request
       const response = await Axios.post(
-        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/storage/delete_invoice",
+        "http://127.0.0.1:5000/storage/delete_invoice",
         {
           user_id: userDetails.auth_user_id,
           invoice_id: invoice_id,

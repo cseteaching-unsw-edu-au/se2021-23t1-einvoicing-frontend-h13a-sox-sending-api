@@ -15,7 +15,7 @@ export const StoreInvoice = () => {
     try {
       // Post Request
       const response = await Axios.post(
-        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/storage/upload",
+        "http://127.0.0.1:5000/storage/upload",
         {
           user_id: userDetails.auth_user_id,
           data: einvoice,
