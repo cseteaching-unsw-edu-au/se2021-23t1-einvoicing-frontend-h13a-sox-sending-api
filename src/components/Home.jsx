@@ -11,7 +11,7 @@ import render from "../icons/RenderInvoice.png";
 import my_invoices from "../icons/MyInvoices.png";
 import send from "../icons/SendInvoice.png";
 import store_invoice from "../icons/StoreInvoice.png";
-import inbox from "../icons/Inbox.png";
+import inbox from "../icons/CheckInbox.png";
 
 export const Home = (props) => {
   const location = useLocation();
