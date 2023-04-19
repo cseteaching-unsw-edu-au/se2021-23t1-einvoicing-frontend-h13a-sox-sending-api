@@ -68,6 +68,7 @@ export const InvoiceStorage = () => {
       // Handle response {200}
       console.log(response);
       await delay(500);
+      getInvoices();
       //setReport(response.data);
     } catch (err) {
       // Handle error
