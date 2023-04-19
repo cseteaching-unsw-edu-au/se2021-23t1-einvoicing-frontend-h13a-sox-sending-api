@@ -6,11 +6,6 @@ import CircleLoader from "react-spinners/CircleLoader";
 import { Popup } from "./Popup";
 import { SendInvoice } from "./SendInvoiceStorage";
 
-import { RenderInvoice } from "./RenderInvoiceStorage";
-import { DeleteInvoice } from "./DeleteInvoiceStorage";
-import { StoreInvoice } from "./StoreInvoiceStorage";
-import { render } from "react-dom";
-
 export const InvoiceStorage = () => {
   const [einvoice, setEinvoice] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,7 +23,7 @@ export const InvoiceStorage = () => {
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-  const data = JSON.parse(localStorage.getItem("invoices"));
+  const data = JSON.parse(localStorage.getItem("invoices")).invoices;
 
   function logInService() {
     userDetails === null
@@ -290,9 +285,9 @@ export const InvoiceStorage = () => {
               <SendInvoice></SendInvoice>
             </Popup>
 
-            <table>
+            <table bgcolor="black" width={500}>
               <thead>
-                <tr>
+                <tr bgcolor="darkcyan">
                   <th>Invoice ID</th>
                   <th>Created Date</th>
                   <th>File Name</th>
@@ -300,7 +295,7 @@ export const InvoiceStorage = () => {
               </thead>
               <tbody>
                 {data2.map((item, index) => (
-                  <tr>
+                  <tr bgcolor="green" align="center">
                     <td>{index}</td>
                     <td>{item.created_date}</td>
                     <td>{item.filename}</td>
