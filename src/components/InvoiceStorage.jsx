@@ -181,7 +181,6 @@ export const InvoiceStorage = () => {
             {/* Handle Render */}
             <button
               className="subtitle-steel-blue"
-              style={{ marginBottom: "20px" }}
               onClick={() => setButtonPupupRender(true)}
             >
               Render Invoice
@@ -196,7 +195,6 @@ export const InvoiceStorage = () => {
             {/* Send Invoice */}
             <button
               className="subtitle-steel-blue"
-              style={{ marginBottom: "20px" }}
               onClick={() => setButtonPupupSend(true)}
             >
               Send Invoice
