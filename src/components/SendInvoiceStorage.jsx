@@ -7,39 +7,32 @@ import CircleLoader from "react-spinners/CircleLoader";
 export const SendInvoice = (props) => {
   const [receiver_email, setreceiver_email] = useState("");
   const [file_name, setfilename] = useState("");
-  const [xml_data, setxml_data] = useState("");
+  const [invoice_id, setInvoice_Id] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   setLoading(false);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 3000);
-  // }, []);
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); /* Prevents page refresh on submit */
     setLoading(true);
     try {
       // Post Request
       const response = await Axios.post(
-        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/send/send_invoice",
+        "http://127.0.0.1:5000/send/send_invoice_id",
         {
-          receiver_email,
-          file_name,
-          xml_data,
+          user_id: userDetails.auth_user_id,
+          receiver_email: receiver_email,
+          file_name: file_name,
+          invoice_id: invoice_id,
         }
       );
       // Handle response {200}
       console.log(response);
+      await delay(500);
+      //getInvoices();
       //setReport(response.data);
-      localStorage.setItem("report", JSON.stringify(response.data));
-      //setLoading(true);
-      //await delay(3000);
-      navigate("/Confirmation", { state: { report: "HelloWorld" } });
     } catch (err) {
       // Handle error
       //console.error(err);
@@ -49,7 +42,7 @@ export const SendInvoice = (props) => {
   };
 
   return (
-    <div className="send-page">
+    <div>
       {loading ? (
         <CircleLoader
           color={"#36d7b7"}
@@ -62,6 +55,19 @@ export const SendInvoice = (props) => {
         <>
           <h2 className="large-text-white">Send E-Invoice</h2>
           <form className="send-Invoice-form" onSubmit={handleSubmit}>
+            {/* Invoice ID */}
+            <label className="title-white" htmlFor="xml_data">
+              Invoice ID
+            </label>
+            <input
+              value={invoice_id}
+              onChange={(e) => setInvoice_Id(e.target.value)}
+              type="text"
+              placeholder="Invoice_id"
+              id="invoice_id"
+              name="invoice_id"
+              style={{ marginBottom: "20px" }}
+            ></input>
             {/* recipient Email */}
             <label className="title-white" htmlFor="email">
               Recipients Email
@@ -87,19 +93,7 @@ export const SendInvoice = (props) => {
               id="file_name"
               name="file_name"
             ></input>
-            {/* XML Data */}
-            <label className="title-white" htmlFor="xml_data">
-              Xml Data
-            </label>
-            <input
-              value={xml_data}
-              onChange={(e) => setxml_data(e.target.value)}
-              type="text"
-              placeholder="<?xml version= .... </Invoice>"
-              id="xml_data"
-              name="xml_data"
-              style={{ marginBottom: "20px" }}
-            ></input>
+
             {/* Submit */}
             <button className="subtitle-steel-blue" type="submit">
               Send E-Invoice
