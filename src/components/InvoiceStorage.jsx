@@ -135,10 +135,10 @@ export const InvoiceStorage = () => {
         />
       ) : (
         <>
-          <h2>E-Invoice Storage</h2>
+          <h2 className="large-text-white" >E-Invoice Storage</h2>
           <form className="single-form">
             {/* xml_data */}
-            <label htmlFor="einvoice">Invoice ID</label>
+            <label className="title-white" htmlFor="einvoice">Invoice ID</label>
             <input
               value={einvoice}
               onChange={(e) => setEinvoice(e.target.value)}
@@ -146,20 +146,33 @@ export const InvoiceStorage = () => {
               placeholder="2"
               id="einvoice"
               name="einvoice"
+              style={{marginBottom:"20px"}}
             ></input>
 
             {/* Delete Invoice */}
-            <button type="submit" onClick={() => handleDelete()}>
+            <button
+              className="subtitle-steel-blue"
+              type="submit"
+              onClick={() => handleDelete()}
+              style={{marginBottom:"20px"}}>
               Delete Invoice
             </button>
 
             {/* Render Invoice */}
-            <button type="submit" onClick={() => handleRender()}>
+            <button
+              className="subtitle-steel-blue"
+              type="submit"
+              onClick={() => handleRender()}
+              style={{marginBottom:"20px"}}>
               Render Invoice
             </button>
 
             {/* Send Invoice */}
-            <button type="submit" onClick={() => handleSend()}>
+            <button
+              className="subtitle-steel-blue"
+              type="submit"
+              onClick={() => handleSend()}
+              style={{marginBottom:"20px"}}>
               Send Invoice
             </button>
           </form>
