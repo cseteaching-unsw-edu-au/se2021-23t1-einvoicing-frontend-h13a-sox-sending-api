@@ -12,10 +12,13 @@ export const Login = (props) => {
     e.preventDefault(); /* Prevents page refresh on submit */
     try {
       // Post Request
-      const response = await Axios.post("http://127.0.0.1:5000/auth/login", {
-        email: email,
-        password: pass,
-      });
+      const response = await Axios.post(
+        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/auth/login",
+        {
+          email: email,
+          password: pass,
+        }
+      );
       // Handle response {200}
       console.log(response);
       //setReport(response.data);

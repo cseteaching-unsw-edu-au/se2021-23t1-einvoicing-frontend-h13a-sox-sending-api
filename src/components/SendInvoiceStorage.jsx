@@ -20,7 +20,7 @@ export const SendInvoice = (props) => {
     try {
       // Post Request
       const response = await Axios.post(
-        "http://127.0.0.1:5000/send/send_invoice_id",
+        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/send/send_invoice_id",
         {
           user_id: userDetails.auth_user_id,
           receiver_email: receiver_email,

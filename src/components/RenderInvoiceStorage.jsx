@@ -38,7 +38,6 @@ export const RenderInvoice = (props) => {
     e.preventDefault(); /* Prevents page refresh on submit */
 
     retrieveAPI();
-    console.log(data.invoices[6].data);
     setinputFile(data.invoices[invoice_id].data);
 
     await delay(3000);
