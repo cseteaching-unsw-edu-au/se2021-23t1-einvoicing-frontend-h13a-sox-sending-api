@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Single.css";
+import "./InvoiceStorage.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CircleLoader from "react-spinners/CircleLoader";
@@ -80,7 +80,7 @@ export const InvoiceStorage = () => {
 
   return (
     <>
-      <div className="single-page">
+      <div className="single-page-Invoice">
         {loading ? (
           <CircleLoader
             color={"#36d7b7"}
@@ -93,6 +93,29 @@ export const InvoiceStorage = () => {
           <>
             <h2>E-Invoice Storage</h2>
             <form className="single-form">
+              {/* xml_data */}
+              <label className="title-white" htmlFor="xml_data">
+                XML Data
+              </label>
+              <input
+                value={xmlData}
+                onChange={(e) => setXmlData(e.target.value)}
+                type="text"
+                placeholder="<b Invoice xml.....ns=\>"
+                id="xml_data"
+                name="xml_data"
+                style={{ marginBottom: "20px", marginTop: "10px" }}
+              ></input>
+
+              {/* Store Invoice */}
+              <button
+                className="subtitle-steel-blue"
+                type="submit"
+                onClick={() => handleStore()}
+                style={{ marginBottom: "20px" }}
+              >
+                Store Invoice
+              </button>
               {/* Invoice_ID */}
               <label htmlFor="einvoice">Invoice ID</label>
               <input
