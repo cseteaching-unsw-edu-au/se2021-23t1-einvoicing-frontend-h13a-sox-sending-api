@@ -3,13 +3,18 @@ import "./Single.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CircleLoader from "react-spinners/CircleLoader";
+import { Popup } from "./Popup";
+import { SendInvoice } from "./SendInvoiceStorage";
+import { RenderInvoice } from "./RenderInvoiceStorage";
+import { DeleteInvoice } from "./DeleteInvoiceStorage";
 
 export const InvoiceStorage = () => {
   const [einvoice, setEinvoice] = useState("");
   const [loading, setLoading] = useState(false);
   const [data2, setData2] = useState([]);
-  const [deleted, setDeleted] = useState([]);
-  const numbers = [4, 3, 5, 1];
+  const [buttonPopupSend, setButtonPupupSend] = useState(false);
+  const [buttonPopupDelete, setButtonPupupDelete] = useState(false);
+  const [buttonPopupRender, setButtonPupupRender] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -63,57 +68,6 @@ export const InvoiceStorage = () => {
       // Handle response {200}
       console.log(response);
       await delay(500);
-      getInvoices();
-      //setReport(response.data);
-    } catch (err) {
-      // Handle error
-      //console.error(err);
-      console.log(err);
-    }
-    setLoading(false);
-  };
-
-  const handleRender = async (e) => {
-    setLoading(true);
-    try {
-      // Post Request
-      const response = await Axios.post(
-        "http://127.0.0.1:5000/storage/delete_invoice",
-        {
-          user_id: userDetails.auth_user_id,
-          invoice_id: einvoice,
-        }
-      );
-      // Handle response {200}
-      console.log(response);
-      await delay(500);
-      getInvoices();
-      //setReport(response.data);
-    } catch (err) {
-      // Handle error
-      //console.error(err);
-      console.log(err);
-    }
-    setLoading(false);
-  };
-
-  const handleSend = async (e) => {
-    setLoading(true);
-    try {
-      // Post Request
-      const response = await Axios.post(
-        "http://127.0.0.1:5000/send/send_invoice_id",
-        {
-          user_id: "0",
-          receiver_email: "sixrip7er@gmail.com",
-          file_name: "exampl2.xml",
-          invoice_id: "0",
-        }
-      );
-      // Handle response {200}
-      console.log(response);
-      await delay(500);
-      getInvoices();
       //setReport(response.data);
     } catch (err) {
       // Handle error
@@ -124,64 +78,75 @@ export const InvoiceStorage = () => {
   };
 
   return (
-    <div className="single-page">
-      {loading ? (
-        <CircleLoader
-          color={"#36d7b7"}
-          loading={loading}
-          size={100}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      ) : (
-        <>
-          <h2>E-Invoice Storage</h2>
-          <form className="single-form">
-            {/* xml_data */}
-            <label htmlFor="einvoice">Invoice ID</label>
-            <input
-              value={einvoice}
-              onChange={(e) => setEinvoice(e.target.value)}
-              type="text"
-              placeholder="2"
-              id="einvoice"
-              name="einvoice"
-            ></input>
-
+    <>
+      <div className="single-page">
+        {loading ? (
+          <CircleLoader
+            color={"#36d7b7"}
+            loading={loading}
+            size={100}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        ) : (
+          <>
+            <h2>E-Invoice Storage</h2>
+            <form className="single-form">
+              {/* Invoice_ID */}
+              <label htmlFor="einvoice">Invoice ID</label>
+              <input
+                value={einvoice}
+                onChange={(e) => setEinvoice(e.target.value)}
+                type="text"
+                placeholder="2"
+                id="einvoice"
+                name="einvoice"
+              ></input>
+            </form>
             {/* Delete Invoice */}
             <button type="submit" onClick={() => handleDelete()}>
               Delete Invoice
             </button>
 
-            {/* Render Invoice */}
-            <button type="submit" onClick={() => handleRender()}>
+            {/* Handle Render */}
+            <button onClick={() => setButtonPupupRender(true)}>
               Render Invoice
             </button>
+            <Popup
+              trigger={buttonPopupRender}
+              setTrigger={setButtonPupupRender}
+            >
+              <RenderInvoice></RenderInvoice>
+            </Popup>
 
             {/* Send Invoice */}
-            <button type="submit" onClick={() => handleSend()}>
+            <button onClick={() => setButtonPupupSend(true)}>
               Send Invoice
             </button>
-          </form>
-          <table>
-            <thead>
-              <tr>
-                <th>Invoice ID</th>
-                <th>Created Date</th>
-                <th>File Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data2.map((item) => (
+            <Popup trigger={buttonPopupSend} setTrigger={setButtonPupupSend}>
+              <SendInvoice></SendInvoice>
+            </Popup>
+
+            <table>
+              <thead>
                 <tr>
-                  <td>{item.invoice_id}</td>
-                  <td>{item.created_date}</td>
+                  <th>Invoice ID</th>
+                  <th>Created Date</th>
+                  <th>File Name</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
-    </div>
+              </thead>
+              <tbody>
+                {data2.map((item) => (
+                  <tr>
+                    <td>{item.invoice_id}</td>
+                    <td>{item.created_date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+      </div>
+    </>
   );
 };

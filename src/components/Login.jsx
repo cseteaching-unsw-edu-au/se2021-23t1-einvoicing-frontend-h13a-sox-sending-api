@@ -67,7 +67,9 @@ export const Login = (props) => {
         ></input>
 
         {/* Submit */}
-        <button className="subtitle-steel-blue" type="submit">Log In</button>
+        <button className="subtitle-steel-blue" type="submit">
+          Log In
+        </button>
       </form>
 
       {/* New User*/}
