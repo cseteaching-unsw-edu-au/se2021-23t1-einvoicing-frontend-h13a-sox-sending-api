@@ -67,9 +67,17 @@ export const Login = (props) => {
         ></input>
 
         {/* Submit */}
+<<<<<<< HEAD
         <button className="subtitle-steel-blue" type="submit">
           Log In
         </button>
+=======
+        <button
+          className="subtitle-steel-blue"
+          type="submit"
+          onClick={() => navigate("../")}
+        >Log In</button>
+>>>>>>> ebb9ebf7a81d475580ba17e17a1bb5ae9c4cb58e
       </form>
 
       {/* New User*/}

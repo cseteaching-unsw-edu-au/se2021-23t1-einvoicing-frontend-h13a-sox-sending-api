@@ -13,6 +13,7 @@
 .register-form,
 .send-Invoice-form,
 .send-page {
+  border: none;
   display: flex;
   flex-direction: column;
 }
@@ -28,7 +29,6 @@ input {
   border: none;
   height: 30px;
   width: 350px;
-  border-radius: 10px;
 }
 
 button {

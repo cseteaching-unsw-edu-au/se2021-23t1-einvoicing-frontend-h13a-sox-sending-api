@@ -24,7 +24,7 @@ export const Navbar = (props) => {
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
 
   function logOut() {
-    userDetails === null
+    location.pathname === "/Registration"
       ? navigate("/Registration")
       : localStorage.removeItem("userDetails");
     navigate("/Registration");
@@ -76,14 +76,6 @@ export const Navbar = (props) => {
               <img src={white_store} alt="Store Invoice" />
             )}
           </NavLink>
-          <NavLink to="/Inbox">
-            {location.pathname === "/Inbox" ? (
-              <img src={blue_inbox} alt="Inbox" />
-            ) : (
-              <img src={white_inbox} alt="Inbox" />
-            )}
-          </NavLink>
-
           <NavLink to="/InvoiceStorage">
             {location.pathname === "/InvoiceStorage" ? (
               <img src={blue_inbox} alt="Inbox" />
@@ -93,7 +85,7 @@ export const Navbar = (props) => {
           </NavLink>
 
           <logout-button onClick={() => logOut()}>
-            {userDetails === null ? (
+            {location.pathname === "/Registration" ? (
               <img className="logout" src={login} alt="Login" />
             ) : (
               <img className="logout" src={logout} alt="Logout" />

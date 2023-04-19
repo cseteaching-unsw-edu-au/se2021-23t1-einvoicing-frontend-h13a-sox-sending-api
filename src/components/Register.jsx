@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./Registration.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Style.css";
+import "./Registration.css";
 
 export const Register = (props) => {
   const [firstName, setFirstName] = useState("");
@@ -55,10 +55,10 @@ export const Register = (props) => {
 
   return (
     <div className="auth-form-container">
-      <h2 className="title">Register</h2>
+      <h2 className="large-text-white">Register</h2>
       <form className="register-form" onSubmit={handleSubmit}>
         {/* first name */}
-        <label htmlFor="first_name" className="subtitle">
+        <label className="title-white" htmlFor="first_name">
           First Name
         </label>
         <input
@@ -70,7 +70,7 @@ export const Register = (props) => {
           id="first_name"
         ></input>
         {/* last name */}
-        <label htmlFor="last_name" className="subtitle">
+        <label htmlFor="last_name" className="title-white">
           Last Name
         </label>
         <input
@@ -82,7 +82,7 @@ export const Register = (props) => {
           id="last_name"
         ></input>
         {/* email */}
-        <label htmlFor="email" className="subtitle">
+        <label htmlFor="email" className="title-white">
           Email
         </label>
         <input
@@ -94,7 +94,7 @@ export const Register = (props) => {
           id="email"
         ></input>
         {/* password */}
-        <label htmlFor="password" className="subtitle">
+        <label htmlFor="password" className="title-white">
           Password
         </label>
         <input
@@ -106,7 +106,10 @@ export const Register = (props) => {
           id="password"
         ></input>
         {/* submit */}
-        <button type="submit" className="subtitle">
+        <button
+          type="submit"
+          className="subtitle-steel-blue"
+          onClick={() => navigate("../")}>
           Register
         </button>
       </form>
