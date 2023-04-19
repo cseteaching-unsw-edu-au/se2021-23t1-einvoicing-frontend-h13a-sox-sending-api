@@ -8,6 +8,7 @@ import { SendInvoice } from "./SendInvoiceStorage";
 import { RenderInvoice } from "./RenderInvoiceStorage";
 import { DeleteInvoice } from "./DeleteInvoiceStorage";
 import { StoreInvoice } from "./StoreInvoiceStorage";
+import { render } from "react-dom";
 
 export const InvoiceStorage = () => {
   const [einvoice, setEinvoice] = useState("");
@@ -18,6 +19,7 @@ export const InvoiceStorage = () => {
   const [buttonPopupRender, setButtonPupupRender] = useState(false);
   const [buttonPopupStore, setButtonPupupStore] = useState(false);
   const [xmlData, setXmlData] = useState("");
+  const [xml_file, setXMLFile] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export const InvoiceStorage = () => {
       localStorage.setItem("invoices", JSON.stringify(response.data));
       setData2(response.data.invoices);
 
-      console.log(response.data);
+      //console.log(response.data);
       //setReport(response.data);
     } catch (err) {
       // Handle error
@@ -93,6 +95,12 @@ export const InvoiceStorage = () => {
 
   const handleStore = async (e) => {
     logInService();
+    //console.log(xmlData);
+    console.log(xml_file.responsetext);
+    console.log(xmlData);
+
+    //getBase64(xml_file).then((data) => setXmlData(data));
+    //console.log(readTextFile(xml_file));
     setLoading(true);
     try {
       // Post Request
@@ -104,7 +112,7 @@ export const InvoiceStorage = () => {
         }
       );
       // Handle response {200}
-      console.log(response);
+      //console.log(response);
       await delay(500);
       getInvoices();
       //setReport(response.data);
@@ -112,6 +120,90 @@ export const InvoiceStorage = () => {
       // Handle error
       //console.error(err);
       console.log(err);
+    }
+    setLoading(false);
+  };
+
+  function handleXMLFile(e) {
+    console.log(e.target.files);
+    setXMLFile(e.target.files[0]);
+    const reader = new FileReader();
+    reader.readAsText(e.target.files[0]);
+    reader.onload = () => {
+      setXmlData(reader.result);
+    };
+
+    reader.onerror = () => {
+      console.log("file error", reader.error);
+    };
+  }
+
+  const retrieveAPI = async () => {
+    try {
+      // Post Request
+      const response = await Axios.post(
+        "https://einvoice-rendering-api.web.app/auth/login/",
+        {
+          email: "sixrip7er@gmail.com",
+          password: "Bakhtiari2023",
+        }
+      );
+      // Handle response {200}
+      localStorage.setItem("token", JSON.stringify(response.data));
+    } catch (err) {
+      // Handle error
+      console.log(err);
+    }
+  };
+
+  const handleRender = async (e) => {
+    logInService();
+    setLoading(true);
+
+    retrieveAPI();
+    setXmlData(data.invoices[einvoice].data);
+
+    await delay(3000);
+
+    const apiKey = JSON.parse(localStorage.getItem("token")).token;
+
+    try {
+      const data = {
+        inputFile: xmlData,
+        lang: "English",
+        option: "Modern",
+      };
+      const urlEncodedData = new URLSearchParams();
+      for (const key in data) {
+        urlEncodedData.append(key, data[key]);
+      }
+
+      const options = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: apiKey,
+        },
+      };
+
+      const response = await Axios.post(
+        "https://einvoice-rendering-api.web.app/render/pdf/v2/",
+        urlEncodedData.toString(),
+        options
+      );
+      console.log(response.data.url);
+      // setLoading(true);
+      await delay(15000);
+      const newWindow = window.open(response.data.url);
+    } catch (error) {
+      console.error(error);
+      if (error.response.status == 422) {
+        console.log(error);
+        alert(
+          "Invoice could not be rendered. Please enter XML String from validated e-invoice!"
+        );
+      } else {
+        console.log(error);
+      }
     }
     setLoading(false);
   };
@@ -131,18 +223,16 @@ export const InvoiceStorage = () => {
           <>
             <h2 className="large-text-white">E-Invoice Storage</h2>
             <form className="single-form">
-              {/* xml_data */}
-              <label className="title-white" htmlFor="xml_data">
-                XML Data
+              {/* file */}
+              <label className="title-white" htmlFor="file">
+                File Upload
               </label>
               <input
-                value={xmlData}
-                onChange={(e) => setXmlData(e.target.value)}
-                type="text"
-                placeholder="<b Invoice xml.....ns=\>"
-                id="xml_data"
-                name="xml_data"
-                style={{ marginBottom: "20px", marginTop: "10px" }}
+                type="file"
+                id="file"
+                name="file"
+                style={{ marginBottom: "1px" }}
+                onChange={handleXMLFile}
               ></input>
 
               {/* Store Invoice */}
@@ -155,12 +245,14 @@ export const InvoiceStorage = () => {
                 Store Invoice
               </button>
               {/* Invoice_ID */}
-              <label className="title-white" htmlFor="einvoice">Invoice ID</label>
+              <label className="title-white" htmlFor="einvoice">
+                Invoice ID
+              </label>
               <input
                 value={einvoice}
                 onChange={(e) => setEinvoice(e.target.value)}
                 type="text"
-                placeholder="2"
+                placeholder="0"
                 id="einvoice"
                 name="einvoice"
                 style={{ marginBottom: "20px" }}
@@ -176,23 +268,21 @@ export const InvoiceStorage = () => {
               Delete Invoice
             </button>
 
-            {/* Handle Render */}
+            {/* Render Invoice */}
             <button
               className="subtitle-steel-blue"
-              onClick={() => setButtonPupupRender(true)}>
+              type="submit"
+              onClick={() => handleRender()}
+              style={{ marginBottom: "20px" }}
+            >
               Render Invoice
             </button>
-            <Popup
-              trigger={buttonPopupRender}
-              setTrigger={setButtonPupupRender}
-            >
-              <RenderInvoice></RenderInvoice>
-            </Popup>
 
             {/* Send Invoice */}
             <button
               className="subtitle-steel-blue"
-              onClick={() => setButtonPupupSend(true)}>
+              onClick={() => setButtonPupupSend(true)}
+            >
               Send Invoice
             </button>
             <Popup trigger={buttonPopupSend} setTrigger={setButtonPupupSend}>
