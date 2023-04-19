@@ -78,7 +78,6 @@ export const InvoiceStorage = () => {
   };
 
   return (
-<<<<<<< HEAD
     <>
       <div className="single-page">
         {loading ? (
@@ -104,53 +103,18 @@ export const InvoiceStorage = () => {
                 name="einvoice"
               ></input>
             </form>
-=======
-    <div className="single-page">
-      {loading ? (
-        <CircleLoader
-          color={"#36d7b7"}
-          loading={loading}
-          size={100}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      ) : (
-        <>
-          <h2 className="large-text-white" >E-Invoice Storage</h2>
-          <form className="single-form">
-            {/* xml_data */}
-            <label className="title-white" htmlFor="einvoice">Invoice ID</label>
-            <input
-              value={einvoice}
-              onChange={(e) => setEinvoice(e.target.value)}
-              type="text"
-              placeholder="2"
-              id="einvoice"
-              name="einvoice"
-              style={{marginBottom:"20px"}}
-            ></input>
-
->>>>>>> ebb9ebf7a81d475580ba17e17a1bb5ae9c4cb58e
             {/* Delete Invoice */}
             <button
               className="subtitle-steel-blue"
               type="submit"
               onClick={() => handleDelete()}
-              style={{marginBottom:"20px"}}>
+              style={{ marginBottom: "20px" }}
+            >
               Delete Invoice
             </button>
 
-<<<<<<< HEAD
             {/* Handle Render */}
             <button onClick={() => setButtonPupupRender(true)}>
-=======
-            {/* Render Invoice */}
-            <button
-              className="subtitle-steel-blue"
-              type="submit"
-              onClick={() => handleRender()}
-              style={{marginBottom:"20px"}}>
->>>>>>> ebb9ebf7a81d475580ba17e17a1bb5ae9c4cb58e
               Render Invoice
             </button>
             <Popup
@@ -161,15 +125,7 @@ export const InvoiceStorage = () => {
             </Popup>
 
             {/* Send Invoice */}
-<<<<<<< HEAD
             <button onClick={() => setButtonPupupSend(true)}>
-=======
-            <button
-              className="subtitle-steel-blue"
-              type="submit"
-              onClick={() => handleSend()}
-              style={{marginBottom:"20px"}}>
->>>>>>> ebb9ebf7a81d475580ba17e17a1bb5ae9c4cb58e
               Send Invoice
             </button>
             <Popup trigger={buttonPopupSend} setTrigger={setButtonPupupSend}>
