@@ -1,5 +1,6 @@
 .home-page {
   align-items: center;
+  text-align: center;
   border: 1px solid;
   background-color: #4680b0;
   display: flex;
@@ -11,7 +12,7 @@
 
 .navigation-c {
   background-color: var(--white);
-  height: 50px;
+  height: 7.5%;
   left: 0;
   position: absolute;
   top: 1px;

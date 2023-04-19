@@ -29,6 +29,12 @@ export const InvoiceStorage = () => {
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
   const data = JSON.parse(localStorage.getItem("invoices"));
 
+  function logInService() {
+    userDetails === null
+      ? alert("Please register and login to use this service.")
+      : console.log("");
+  }
+
   const getInvoices = async (e) => {
     //e.preventDefault(); /* Prevents page refresh on submit */
     setLoading(true);
@@ -61,6 +67,7 @@ export const InvoiceStorage = () => {
   };
 
   const handleDelete = async (e) => {
+    logInService();
     setLoading(true);
     try {
       // Post Request
@@ -85,6 +92,7 @@ export const InvoiceStorage = () => {
   };
 
   const handleStore = async (e) => {
+    logInService();
     setLoading(true);
     try {
       // Post Request
@@ -155,6 +163,7 @@ export const InvoiceStorage = () => {
                 placeholder="2"
                 id="einvoice"
                 name="einvoice"
+                style={{ marginBottom: "20px" }}
               ></input>
             </form>
             {/* Delete Invoice */}
