@@ -15,6 +15,12 @@ export const RenderInvoice = (props) => {
   const data = JSON.parse(localStorage.getItem("invoices"));
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
+  function logInService() {
+    userDetails === null
+      ? alert("Please register and login to use this service.")
+      : console.log("");
+  }
+
   const retrieveAPI = async () => {
     try {
       // Post Request

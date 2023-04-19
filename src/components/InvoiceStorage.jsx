@@ -29,6 +29,12 @@ export const InvoiceStorage = () => {
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
   const data = JSON.parse(localStorage.getItem("invoices"));
 
+  function logInService() {
+    userDetails === null
+      ? alert("Please register and login to use this service.")
+      : console.log("");
+  }
+
   const getInvoices = async (e) => {
     //e.preventDefault(); /* Prevents page refresh on submit */
     setLoading(true);
@@ -61,6 +67,7 @@ export const InvoiceStorage = () => {
   };
 
   const handleDelete = async (e) => {
+    logInService();
     setLoading(true);
     try {
       // Post Request
@@ -85,6 +92,7 @@ export const InvoiceStorage = () => {
   };
 
   const handleStore = async (e) => {
+    logInService();
     setLoading(true);
     try {
       // Post Request
@@ -121,7 +129,7 @@ export const InvoiceStorage = () => {
           />
         ) : (
           <>
-            <h2>E-Invoice Storage</h2>
+            <h2 className="large-text-white">E-Invoice Storage</h2>
             <form className="single-form">
               {/* xml_data */}
               <label className="title-white" htmlFor="xml_data">
@@ -147,7 +155,9 @@ export const InvoiceStorage = () => {
                 Store Invoice
               </button>
               {/* Invoice_ID */}
-              <label htmlFor="einvoice">Invoice ID</label>
+              <label className="title-white" htmlFor="einvoice">
+                Invoice ID
+              </label>
               <input
                 value={einvoice}
                 onChange={(e) => setEinvoice(e.target.value)}
@@ -155,6 +165,7 @@ export const InvoiceStorage = () => {
                 placeholder="2"
                 id="einvoice"
                 name="einvoice"
+                style={{ marginBottom: "20px" }}
               ></input>
             </form>
             {/* Delete Invoice */}
@@ -168,7 +179,11 @@ export const InvoiceStorage = () => {
             </button>
 
             {/* Handle Render */}
-            <button onClick={() => setButtonPupupRender(true)}>
+            <button
+              className="subtitle-steel-blue"
+              style={{ marginBottom: "20px" }}
+              onClick={() => setButtonPupupRender(true)}
+            >
               Render Invoice
             </button>
             <Popup
@@ -179,7 +194,11 @@ export const InvoiceStorage = () => {
             </Popup>
 
             {/* Send Invoice */}
-            <button onClick={() => setButtonPupupSend(true)}>
+            <button
+              className="subtitle-steel-blue"
+              style={{ marginBottom: "20px" }}
+              onClick={() => setButtonPupupSend(true)}
+            >
               Send Invoice
             </button>
             <Popup trigger={buttonPopupSend} setTrigger={setButtonPupupSend}>

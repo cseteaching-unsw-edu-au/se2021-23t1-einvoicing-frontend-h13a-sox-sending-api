@@ -113,7 +113,7 @@ export const Register = (props) => {
         {/* submit */}
         {/* Submit */}
         <button className="subtitle-steel-blue" type="submit">
-          Log In
+          Registor
         </button>
       </form>
       <button className="link-btn" onClick={() => props.onFormSwitch("login")}>
