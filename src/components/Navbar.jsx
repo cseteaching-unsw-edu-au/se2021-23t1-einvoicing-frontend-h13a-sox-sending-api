@@ -86,7 +86,11 @@ export const Navbar = (props) => {
 
           <logout-button onClick={() => logOut()}>
             {userDetails === null ? (
-              <img className="logout" src={login} alt="Logout" />
+              location.pathname === "/Registration" ? (
+                <img className="logout" src={blue_inbox} alt="Inbox" />
+              ) : (
+                <img className="logout" src={login} alt="Inbox" />
+              )
             ) : (
               <img className="logout" src={logout} alt="Logout" />
             )}
