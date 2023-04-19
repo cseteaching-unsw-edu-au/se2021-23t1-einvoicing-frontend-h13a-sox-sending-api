@@ -69,15 +69,15 @@ export const Navbar = (props) => {
               <img src={white_send} alt="Send Invoice" />
             )}
           </NavLink>
-          <NavLink to="/StoreInvoice">
-            {location.pathname === "/StoreInvoice" ? (
+          <NavLink to="/InvoiceStorage">
+            {location.pathname === "/InvoiceStorage" ? (
               <img src={blue_store} alt="Store Invoice" />
             ) : (
               <img src={white_store} alt="Store Invoice" />
             )}
           </NavLink>
-          <NavLink to="/InvoiceStorage">
-            {location.pathname === "/InvoiceStorage" ? (
+          <NavLink to="/Inbox">
+            {location.pathname === "/Inbox" ? (
               <img src={blue_inbox} alt="Inbox" />
             ) : (
               <img src={white_inbox} alt="Inbox" />
