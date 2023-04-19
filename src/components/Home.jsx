@@ -10,7 +10,7 @@ import authenticate from "../icons/AuthenticateInvoice.png";
 import render from "../icons/RenderInvoice.png";
 import my_invoices from "../icons/MyInvoices.png";
 import send from "../icons/SendInvoice.png";
-import inbox from "../icons/CheckInbox.png";
+import store_invoice from "../icons/StoreInvoice.png";
 
 export const Home = (props) => {
   const location = useLocation();
@@ -90,7 +90,7 @@ export const Home = (props) => {
           {/* My Invoices Button */}
           <home-page-button
             style={{ position: "absolute", left: "300px", top: "525px" }}
-            onClick={() => navigate("../StoreInvoice")}
+            onClick={() => navigate("../InvoiceStorage")}
           >
             <img
               className="home-buttons"
@@ -112,9 +112,9 @@ export const Home = (props) => {
           {/* Inbox Button */}
           <home-page-button
             style={{ position: "absolute", left: "900px", top: "525px" }}
-            onClick={() => navigate("../Inbox")}
+            onClick={() => navigate("../StoreInvoice")}
           >
-            <img className="home-buttons" src={inbox} alt="Inbox" />
+            <img className="home-buttons" src={store_invoice} alt="Store Invoice" />
           </home-page-button>
         </div>
     </div>
