@@ -40,9 +40,12 @@ export const InvoiceStorage = () => {
           "Content-Type": "application/json",
         },
       };
-      const response = await Axios.post("http://127.0.0.1:5000/storage/list", {
-        user_id: userDetails.auth_user_id,
-      });
+      const response = await Axios.post(
+        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/storage/list",
+        {
+          user_id: userDetails.auth_user_id,
+        }
+      );
       // Handle response {200}
       localStorage.setItem("invoices", JSON.stringify(response.data));
       setData2(response.data.invoices);
@@ -62,7 +65,7 @@ export const InvoiceStorage = () => {
     try {
       // Post Request
       const response = await Axios.post(
-        "http://127.0.0.1:5000/storage/delete_invoice",
+        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/storage/delete_invoice",
         {
           user_id: userDetails.auth_user_id,
           invoice_id: einvoice,
@@ -86,7 +89,7 @@ export const InvoiceStorage = () => {
     try {
       // Post Request
       const response = await Axios.post(
-        "http://127.0.0.1:5000/storage/upload",
+        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/storage/upload",
         {
           user_id: userDetails.auth_user_id,
           data: xmlData,
@@ -165,30 +168,6 @@ export const InvoiceStorage = () => {
               Delete Invoice
             </button>
 
-            {/* xml_data */}
-            <label className="title-white" htmlFor="xml_data">
-              XML Data
-            </label>
-            <input
-              value={xmlData}
-              onChange={(e) => setXmlData(e.target.value)}
-              type="text"
-              placeholder="<b Invoice xml.....ns=\>"
-              id="xml_data"
-              name="xml_data"
-              style={{ marginBottom: "20px", marginTop: "10px" }}
-            ></input>
-
-            {/* Delete Invoice */}
-            <button
-              className="subtitle-steel-blue"
-              type="submit"
-              onClick={() => handleStore()}
-              style={{ marginBottom: "20px" }}
-            >
-              Store Invoice
-            </button>
-
             {/* Handle Render */}
             <button
               className="subtitle-steel-blue"
@@ -211,14 +190,6 @@ export const InvoiceStorage = () => {
             </button>
             <Popup trigger={buttonPopupSend} setTrigger={setButtonPupupSend}>
               <SendInvoice></SendInvoice>
-            </Popup>
-
-            {/* Store Invoice */}
-            <button onClick={() => setButtonPupupStore(true)}>
-              Store Invoice
-            </button>
-            <Popup trigger={buttonPopupStore} setTrigger={setButtonPupupStore}>
-              <StoreInvoice></StoreInvoice>
             </Popup>
 
             <table>

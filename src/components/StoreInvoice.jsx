@@ -14,7 +14,7 @@ export const StoreInvoice = () => {
     try {
       // Post Request
       const response = await Axios.post(
-        "http://127.0.0.1:5000/storage/upload",
+        "http://h13a-sox-sending-api.ap-southeast-2.elasticbeanstalk.com/storage/upload",
         {
           user_id: userDetails.auth_user_id,
           data: einvoice,
@@ -32,10 +32,12 @@ export const StoreInvoice = () => {
 
   return (
     <div className="single-page">
-      <h2 className="large-text-white" >Store E-Invoice</h2>
+      <h2 className="large-text-white">Store E-Invoice</h2>
       <form className="single-form" onSubmit={handleSubmit}>
         {/* xml_data */}
-        <label className="title-white" htmlFor="einvoice">XML Data</label>
+        <label className="title-white" htmlFor="einvoice">
+          XML Data
+        </label>
         <input
           value={einvoice}
           onChange={(e) => setEinvoice(e.target.value)}
@@ -43,11 +45,13 @@ export const StoreInvoice = () => {
           placeholder="<b Invoice xml.....ns=\>"
           id="einvoice"
           name="einvoice"
-          style={{marginBottom:"20px", marginTop:"10px"}}
+          style={{ marginBottom: "20px", marginTop: "10px" }}
         ></input>
 
         {/* Submit */}
-        <button className="subtitle-steel-blue" type="submit">Store E-Invoice</button>
+        <button className="subtitle-steel-blue" type="submit">
+          Store E-Invoice
+        </button>
       </form>
     </div>
   );
