@@ -23,7 +23,7 @@ export const InvoiceStorage = () => {
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-  const data = JSON.parse(localStorage.getItem("invoices")).invoices;
+  const data = JSON.parse(localStorage.getItem("invoices"));
 
   function logInService() {
     userDetails === null
