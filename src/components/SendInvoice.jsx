@@ -8,7 +8,9 @@ export const SendInvoice = (props) => {
   const [receiver_email, setreceiver_email] = useState("");
   const [file_name, setfilename] = useState("");
   const [xml_data, setxml_data] = useState("");
+  const [xml_file, setXMLFile] = useState("");
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -47,6 +49,20 @@ export const SendInvoice = (props) => {
     }
     setLoading(false);
   };
+
+  function handleXMLFile(e) {
+    console.log(e.target.files);
+    setXMLFile(e.target.files[0]);
+    const reader = new FileReader();
+    reader.readAsText(e.target.files[0]);
+    reader.onload = () => {
+      setxml_data(reader.result);
+    };
+
+    reader.onerror = () => {
+      console.log("file error", reader.error);
+    };
+  }
 
   return (
     <div className="send-page">
@@ -87,18 +103,16 @@ export const SendInvoice = (props) => {
               id="file_name"
               name="file_name"
             ></input>
-            {/* XML Data */}
-            <label className="title-white" htmlFor="xml_data">
-              Xml Data
+            {/* file */}
+            <label className="title-white" htmlFor="file">
+              File Upload
             </label>
             <input
-              value={xml_data}
-              onChange={(e) => setxml_data(e.target.value)}
-              type="text"
-              placeholder="<?xml version= .... </Invoice>"
-              id="xml_data"
-              name="xml_data"
-              style={{ marginBottom: "20px" }}
+              type="file"
+              id="file"
+              name="file"
+              style={{ marginBottom: "1px" }}
+              onChange={handleXMLFile}
             ></input>
             {/* Submit */}
             <button className="subtitle-steel-blue" type="submit">

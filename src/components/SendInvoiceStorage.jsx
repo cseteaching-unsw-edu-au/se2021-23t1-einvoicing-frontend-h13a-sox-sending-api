@@ -3,20 +3,32 @@ import "./Registration.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CircleLoader from "react-spinners/CircleLoader";
+import { Popup } from "./Popup";
+import { Confirmation } from "./Confirmation";
 
 export const SendInvoice = (props) => {
   const [receiver_email, setreceiver_email] = useState("");
   const [file_name, setfilename] = useState("");
   const [invoice_id, setInvoice_Id] = useState("");
+  const [buttonPopupConfirm, setButtonPupupConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+  const data = JSON.parse(localStorage.getItem("invoices"));
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
+  function logInService() {
+    userDetails === null
+      ? navigate("/Registration", { state: { report: "HelloWorld" } })
+      : console.log("");
+  }
+
   const handleSubmit = async (e) => {
+    logInService();
     setLoading(true);
+    //console.log(data.invoices[invoice_id].invoice_id);
     try {
       // Post Request
       const response = await Axios.post(
@@ -25,14 +37,16 @@ export const SendInvoice = (props) => {
           user_id: userDetails.auth_user_id,
           receiver_email: receiver_email,
           file_name: file_name,
-          invoice_id: invoice_id,
+          invoice_id: data.invoices[invoice_id].invoice_id,
         }
       );
       // Handle response {200}
       console.log(response);
       await delay(500);
       //getInvoices();
-      //setReport(response.data);
+      localStorage.setItem("report", JSON.stringify(response.data));
+
+      setButtonPupupConfirm(true);
     } catch (err) {
       // Handle error
       //console.error(err);
@@ -80,7 +94,6 @@ export const SendInvoice = (props) => {
               id="email"
               name="email"
             ></input>
-
             {/* filename */}
             <label className="title-white" htmlFor="file_name">
               File Name
@@ -93,11 +106,17 @@ export const SendInvoice = (props) => {
               id="file_name"
               name="file_name"
             ></input>
-
             {/* Submit */}
             <button className="subtitle-steel-blue" type="submit">
               Send E-Invoice
             </button>
+            <Popup
+              trigger={buttonPopupConfirm}
+              setTrigger={setButtonPupupConfirm}
+            >
+              <Confirmation></Confirmation>
+            </Popup>
+            ;
           </form>
         </>
       )}

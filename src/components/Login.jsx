@@ -29,7 +29,7 @@ export const Login = (props) => {
       if (err.response.data.message === "<p>Invalid Email</p>") {
         //console.log(err);
         console.log(err);
-        alert("Invalid Email, Please Registor First");
+        alert("Email is not in our system, Please Register First.");
       } else if (err.response.data.message === "<p>Incorrect Password</p>") {
         console.log(err);
         alert("Incorrect Password");

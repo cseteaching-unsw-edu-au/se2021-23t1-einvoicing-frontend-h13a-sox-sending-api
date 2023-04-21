@@ -14,6 +14,7 @@ import white_send from "../icons/WhiteSendInvoiceNav.png";
 import blue_send from "../icons/BlueSendInvoiceNav.png";
 import white_inbox from "../icons/WhiteInboxNav.png";
 import blue_inbox from "../icons/BlueInboxNav.png";
+import blue_login from "../icons/BlueLogin.png";
 import "./Navbar.css";
 import "./Style.css";
 
@@ -86,7 +87,11 @@ export const Navbar = (props) => {
 
           <logout-button onClick={() => logOut()}>
             {userDetails === null ? (
-              <img className="logout" src={login} alt="Logout" />
+              location.pathname === "/Registration" ? (
+                <img className="logout" src={blue_login} alt="Inbox" />
+              ) : (
+                <img className="logout" src={login} alt="Inbox" />
+              )
             ) : (
               <img className="logout" src={logout} alt="Logout" />
             )}
